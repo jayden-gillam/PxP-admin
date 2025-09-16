@@ -1,23 +1,23 @@
-# CapstoneProjectTemplate /* Replace this line with the title of your project */
+# PxP Admin
 
 ## **Summary**
 
-Put a very high-level summary of the project.
+idk yet
 
 ## **Team Members**
 
-- Joe Black
-- Joe Pesci
-- Joe Dalton
+- Jayden Gillam
+- Liam Grube
+- Shristi Khadka
+- Sinclair Nzenwata
+- Drew Scott
 
 ## **Client Partner Information**
 
 ### *Company:*
-WHATEVER COMPANY or CORRESPONDENCE
+idk
 
 ### *People:*
-- Jane Fonda
-- Jane Lynch
 
 ## **Links**
 
