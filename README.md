@@ -2,7 +2,7 @@
 
 ## **Summary**
 
-idk yet
+unknown
 
 ## **Team Members**
 
@@ -15,9 +15,10 @@ idk yet
 ## **Client Partner Information**
 
 ### *Company:*
-idk
+unknown
 
 ### *People:*
+unknown
 
 ## **Links**
 
@@ -29,7 +30,4 @@ idk
 
 ## **Code Repositories**
 
-- [Mobile App - Android](https://www.github.com/WHEREEVER_THE_ANDROID_CODE_IS/)
-- [Php Backend](https://www.github.com/WHEREEVER_THE_PHP_CODE_IS)
-- Others if more.
 
