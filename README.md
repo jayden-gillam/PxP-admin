@@ -18,8 +18,8 @@ unknown
 Play-by-Play
 
 ### *People:*
-Matt Foss
-Abeeb Visram
+- Matt Foss
+- Abeeb Visram
 
 ## **Links**
 
