@@ -5,4 +5,4 @@
 - **Client:** Abeed Visram, Matt Foss, Mike Foss
 
 ## Documents
-- [Disovery Meeting Minutes](Discovery/Minutes.md)
+- [Disovery Meeting Minutes](Minutes.md)
