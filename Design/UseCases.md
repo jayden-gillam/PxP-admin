@@ -1,3 +1,4 @@
+## Actors
 - **Game Master (GM)**
      Responsible for creating and managing games. They will choose/create prediction questions, open/close prediction windows, select         play presets, mark correct answers, and monitor the video stream feed.
 
@@ -11,7 +12,7 @@
      Provides real-time updates
 
 ---
-
+## UseCases
 - **UC1: Create Game**
 The Gm must be able to create a new live or taped game.This will be done by entering a video stream URL.
 **Actors:** Game Master, System
