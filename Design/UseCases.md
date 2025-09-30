@@ -14,15 +14,15 @@
 ---
 ## UseCases
 - **UC1: Create Game**
-The Gm must be able to create a new live or taped game.This will be done by entering a video stream URL.
-**Actors:** Game Master, System
-**Flow:**
-1. GM logs into the PxP dashboard.
-2. GM selects "Create Game."
-3. GM enters game details (name, feed URL)
-4. System validates and stores details in Firebase.
-5. Game session becomes available for live or taped scoring.
-**Requirement Link:** FR1
+     The Gm must be able to create a new live or taped game.This will be done by entering a video stream URL.
+     **Actors:** Game Master, System
+     **Flow:**
+          - GM logs into the PxP dashboard.
+          - GM selects "Create Game."
+          - GM enters game details (name, feed URL)
+          - System validates and stores details in Firebase.
+          - Game session becomes available for live or taped scoring.
+     **Requirement Link:** FR1
 
 - **UC2: Manage Prediction Windows**
 The prediction window will allow players to guess outcomes in real time. This will be controlled and set by a preset the Game Master selects. 
