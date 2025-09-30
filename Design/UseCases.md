@@ -1,11 +1,11 @@
--**Game Master (GM)**
-     Responsible for creating and managing games. They will choose/create prediction questions, open/close prediction windows, select play presets, mark correct answers, and monitor the video stream feed.
+- **Game Master (GM)**
+     Responsible for creating and managing games. They will choose/create prediction questions, open/close prediction windows, select         play presets, mark correct answers, and monitor the video stream feed.
 
--**Ad Master(AM)**
+- **Ad Master(AM)**
      Manages the shown advertisements. They will upload ad assets, preview the ads, and schedule the ads.
 
--**Player (User)**
-     Target Demographic is 19-35. Players interact by predicting plays. Players can earn points, compete on the leaderboard, and recieve rewards.
+- **Player (User)**
+     Target Demographic is 19-35. Players interact by predicting plays. Players can earn points, compete on the leaderboard, and recieve      rewards.
 
 -**System (PxP Platform / Firebase backend)**
      Provides real-time updates
@@ -27,47 +27,47 @@ The Gm must be able to create a new live or taped game.This will be done by ente
 The prediction window will allow players to guess outcomes in real time. This will be controlled and set by a preset the Game Master selects. 
 **Actors:** Game Master, System, Player
 **Flow:**
-1.GM selects a prediction preset during a play.
+1. GM selects a prediction preset during a play.
 2. Players recieve the window and select their prediction.
 3. GM closes the window.
 4. GM selects the correct outcome.
 5. System stores player responses.
 **Requirement Link:** FR2
 
--**UC3: Create and Select Prediction Questions**
+- **UC3: Create and Select Prediction Questions**
 GMs can select templates or add new questions to give players choices for each play.
 **Actors:** Game Master, System
 **Flow:**
-1.GM selects a template or creates a custom question.
-2.System saves the question.
-3.GM links it to an upcoming prediction window.
+1. GM selects a template or creates a custom question.
+2. System saves the question.
+3. GM links it to an upcoming prediction window.
 **Requirement Link:** FR3
 
--**UC4: Mark Correct Answer**
+- **UC4: Mark Correct Answer**
 After each play, the GM must identify and select the correct outcome of the play so that the system can award points to Players. 
 ***Actors:** Game Master, System, Player
 **Flow:**
-1.GM identifies outcome of the play.
-2.GM selects the correct answer.
-3.System awards points to correct players.
+1. GM identifies outcome of the play.
+2. GM selects the correct answer.
+3. System awards points to correct players.
 **Requirement Link:** FR4
 
--**UC5: Upload Ads**
+- **UC5: Upload Ads**
 Ad Master must upload ad assets which will display to players. 
 **Actors:** Ad Master, System
 **Flow:**
-1.AM goes to "Upload Ad."
-2.AM uploads an image/asset.
-3.System stores ad data in Firebase.
+1. AM goes to "Upload Ad."
+2. AM uploads an image/asset.
+3. System stores ad data in Firebase.
 **Requirement Link:** FR5
 
 -**UC6: Schedule and Manage Ads**
 Ads should appear duing the right times. The Ad Master can schedule ads and manage when they will appear during games. 
 **Actors:** Ad Master, System, Player
 **Flow:**
-1.AM selects an uploaded ad. 
-2.AM assigns it to a schedule and sets the timing.
-3.System displays ads on player's screens using the timing and duration the AM sets.
+1. AM selects an uploaded ad. 
+2. AM assigns it to a schedule and sets the timing.
+3. System displays ads on player's screens using the timing and duration the AM sets.
 **Requirement Link:** FR6
 
 -**UC7: Preview Ads**
