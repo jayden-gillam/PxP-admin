@@ -1,35 +1,35 @@
-# Client Meeting on 9/30/2025
+Client Meeting on 9/30/2025
 
-## Meeting Start Time  
+Meeting Start Time  
 2019/09/30/03:30  
 
-## Meeting End Time  
+Meeting End Time  
 2019/09/30/03:45  
 
-## Location/Medium  
+Location/Medium  
 Zoom  
 
-## Present  
+Present  
 Shristi, Andrew, Nzenwata, Liam, Jayden, Matt  
 
-## Minute Recorder  
+Minute Recorder  
 Shristi  
 
-## Topics Discussed  
-- Plans for a web-based Game Master interface (React frontend, shared backend with mobile app)  
-- Initial iteration to include core functionality (game creation, management, answer selection)  
-- Rewards and ads integration timeline (not urgent)  
-- Design flexibility and priorities (functionality first, design later)  
-- Requirements: Legend Mode creation, ad uploads, window management, hotkeys, multiple answer selection  
-- Performance and security considerations  
+Topics Discussed  
+Plans for a web-based Game Master interface (React frontend, shared backend with mobile app)  
+Initial iteration to include core functionality (game creation, management, answer selection)  
+Rewards and ads integration timeline (not urgent)  
+Design flexibility and priorities (functionality first, design later)  
+Requirements: Legend Mode creation, ad uploads, window management, hotkeys, multiple answer selection  
+Performance and security considerations  
 
-## Things Clarified  
-- First iteration of Game Master interface due end of October  
-- Team will prioritize core functionality  
-- Hotkeys to be added for Game Master presets  
-- UI for Legend Mode creation to be developed  
-- Pre-scheduled ads feature planned  
-- Security measures to be strengthened in future iterations  
+Things Clarified  
+First iteration of Game Master interface due end of October  
+Team will prioritize core functionality  
+Hotkeys to be added for Game Master presets  
+UI for Legend Mode creation to be developed  
+Pre-scheduled ads feature planned  
+Security measures to be strengthened in future iterations  
 
-## Client Use of Software  
+Client Use of Software  
 Client confirmed that ads and rewards integration could be postponed. They emphasized flexibility in design for the first iteration and supported Legend Mode creation directly from the database to accommodate 2–3 new episodes weekly.  
