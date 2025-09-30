@@ -7,12 +7,12 @@
 - **Player (User)**
      Target Demographic is 19-35. Players interact by predicting plays. Players can earn points, compete on the leaderboard, and recieve      rewards.
 
--**System (PxP Platform / Firebase backend)**
+- **System (PxP Platform / Firebase backend)**
      Provides real-time updates
 
 ---
 
--**UC1: Create Game**
+- **UC1: Create Game**
 The Gm must be able to create a new live or taped game.This will be done by entering a video stream URL.
 **Actors:** Game Master, System
 **Flow:**
@@ -23,7 +23,7 @@ The Gm must be able to create a new live or taped game.This will be done by ente
 5. Game session becomes available for live or taped scoring.
 **Requirement Link:** FR1
 
--**UC2: Manage Prediction Windows**
+- **UC2: Manage Prediction Windows**
 The prediction window will allow players to guess outcomes in real time. This will be controlled and set by a preset the Game Master selects. 
 **Actors:** Game Master, System, Player
 **Flow:**
@@ -61,7 +61,7 @@ Ad Master must upload ad assets which will display to players.
 3. System stores ad data in Firebase.
 **Requirement Link:** FR5
 
--**UC6: Schedule and Manage Ads**
+- **UC6: Schedule and Manage Ads**
 Ads should appear duing the right times. The Ad Master can schedule ads and manage when they will appear during games. 
 **Actors:** Ad Master, System, Player
 **Flow:**
@@ -70,7 +70,7 @@ Ads should appear duing the right times. The Ad Master can schedule ads and mana
 3. System displays ads on player's screens using the timing and duration the AM sets.
 **Requirement Link:** FR6
 
--**UC7: Preview Ads**
+- **UC7: Preview Ads**
 The Ad master should preview ads to ensure that sizing and formatting is correct.
 **Actors:** Ad master, System
 **Flow:**
@@ -79,7 +79,7 @@ The Ad master should preview ads to ensure that sizing and formatting is correct
 3. AM approves or re-uploads.
 **Requirement Link:** FR7
 
--**UC8: Activate Legend Mode**
+- **UC8: Activate Legend Mode**
 GMs can run Legend Mode. This is a pre-recorded game. These games are scored similarly to live games but are based on pre-recorded taped footage. 
 **Actors:** Game Master, System
 **FLow:**
