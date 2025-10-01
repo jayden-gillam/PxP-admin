@@ -22,7 +22,7 @@ Play-by-Play
 - Abeeb Visram
   
 ## **Project Management Tool**
-https://github.com/users/jayden-gillam/projects/4/views/1
+https://github.com/users/jayden-gillam/projects/4
 
 ## **Links**
 
