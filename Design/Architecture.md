@@ -44,5 +44,25 @@ flowchart TB
 
     FirebaseSDK --> Firestore
     Auth --> Users
+```
+## System Architecture Module Explanations
+
+| **Module** | **Layer** | **Explanation / Why it’s a module** |
+|------------|-----------|--------------------------------------|
+| React + TypeScript Web Client | Presentation | |
+| Game Master Dashboard | Presentation ||
+| Ad Master Dashboard | Presentation |  |
+| Game Management Module | Business | |
+| Prediction Management Module | Business | |
+| Ad Management Module | Business |  |
+| Reward & Legend Mode Module | Business |  |
+| Firebase SDK / Firestore API | Data Interface |  |
+| Firebase Authentication | Data Interface |  |
+| Firestore Collections | Database | |
+| Games | Database | |
+| Predictions | Database | |
+| Ads | Database |  |
+| Users | Database | |
+| Rewards | Database |  |
 
 
