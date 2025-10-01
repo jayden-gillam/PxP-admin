@@ -102,8 +102,8 @@ The Ad Master must upload ad assets which will display to players.
 
 ---
 
-### UC6: Schedule and Manage Ads
-Ads should appear during the right times. The Ad Master can schedule ads and manage when they will appear during games.  
+### UC6:  Manage Ads
+Ads should appear during the right times. The Ad Master can manage when they will appear during games.  
 
 **Actors:**  
 - Ad Master  
@@ -111,9 +111,8 @@ Ads should appear during the right times. The Ad Master can schedule ads and man
 - Player  
 
 **Flow:**  
-1. AM selects an uploaded ad.  
-2. AM assigns it to a schedule and sets the timing.  
-3. System displays ads on players’ screens using the timing and duration the AM sets.  
+1. AM selects an uploaded ad.   
+2. System displays ads on players’ screens.  
 
 **Requirement Link:** FR6  
 
