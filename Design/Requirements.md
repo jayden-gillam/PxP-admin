@@ -28,7 +28,7 @@
   - Priority: HIGH  
 
 - **FR6: Schedule and Manage Ads**
-  Ad Masters must be able to schedule ads during live games and control when they appear.  
+  Ad Masters must be able to manage ads during live games and control when they appear.  
   - Use Case: UC6  
   - Priority: HIGH  
 
