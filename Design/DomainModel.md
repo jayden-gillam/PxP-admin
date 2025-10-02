@@ -1,5 +1,6 @@
 # Domain Model
 
+```mermaid
 classDiagram
     class User {
       +String id
