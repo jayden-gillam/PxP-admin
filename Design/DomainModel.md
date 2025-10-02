@@ -7,7 +7,6 @@ classDiagram
       +String name
       +Role role
     }
-
     class Game {
       +String id
       +String name
@@ -16,33 +15,28 @@ classDiagram
       +DateTime endedAt
       +String status
     }
-
     class PredictionWindow {
       +String id
       +DateTime openTime
       +DateTime closeTime
     }
-
     class PredictionQuestion {
       +String id
       +String text
       +String correctAnswer
       +List~String~ options
     }
-
     class Ad {
       +String id
       +String imageUrl
       +String redirectUrl
       +DateTime scheduledTime
     }
-
     class Reward {
       +String id
       +String description
       +Integer points
     }
-
     %% === RELATIONSHIPS ===
     User --> Game : creates
     Game --> PredictionWindow : has
