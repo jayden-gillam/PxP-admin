@@ -1,0 +1,32 @@
+# Team Meeting (Week of October 8, 2025)
+
+## Meeting Start Time  
+2025/10/11/03:00  
+
+## Meeting End Time  
+2025/10/11/03:15  
+
+## Location/Medium  
+Zoom  
+
+## Present  
+Shristi, Drew, Jayden, Liam, Sinclair  
+
+## Minute Recorder  
+Shristi  
+
+## Topics Discussed  
+- Reviewed the project’s **tech stack**.  
+- Discussed **database setup** and environment configuration.  
+- Went over writing **backend logic** from the mobile app.  
+- Talked about integrating backend routes with frontend components in upcoming sprints.  
+- Reviewed GitHub repository structure and consistency for commits and branches.  
+
+## Things Clarified  
+- Confirmed which libraries will be used for backend and frontend.  
+- Discussed that the database schema and models will be finalized before the next meeting.  
+- Everyone will test their local setup to ensure smooth integration before continuing development.  
+- Decided that once backend setup is stable, frontend integration testing will begin.  
+
+## Tasks Distributed  
+- (Not clarified yet)
