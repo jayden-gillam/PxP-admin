@@ -154,7 +154,7 @@ The Create Game modal has two required fields:
 
 ### Main Dashboard Layout
 
-![Dashboard Layout](imagesdashboard.png)
+![Dashboard Layout](images/dashboard.png)
 
 The Dashboard is divided into three main panels:
 
