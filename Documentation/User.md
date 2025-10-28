@@ -38,7 +38,7 @@ Before using Play by Play Admin, ensure you have:
 
 ### Step 1: Enter Your Credentials
 
-![Login Page](https://i.ibb.co/kgk6sSTQ/login.png)
+![Login Page](images/login.png)
 
 1. On the login screen, enter your **Email Address** in the first field
 2. Enter your **Password** in the second field
@@ -46,7 +46,7 @@ Before using Play by Play Admin, ensure you have:
 
 ### Step 2: After Successful Login
 
-![Successful Login](https://i.ibb.co/LDc9jWs9/home.png)
+![Successful Login](images/home.png)
 
 - You will be automatically redirected to the **Home Page**
 - Your email will appear in the top-right corner of the screen
@@ -54,11 +54,11 @@ Before using Play by Play Admin, ensure you have:
 
 ### Troubleshooting Login
 
-| Issue | Solution                                  |
-|------|-------------------------------------------|
-| "Invalid credentials" error | Check your email and password are correct |
-| "Cannot connect to server" | Check your internet connection            |
-| Page keeps redirecting to login | Clear your browser cache and try again    |
+| Issue                                                         | Solution                                  |
+| ------------------------------------------------------------- | ----------------------------------------- |
+| "Invalid credentials" error                                   | Check your email and password are correct |
+| "Cannot connect to server"                                    | Check your internet connection            |
+| Page keeps redirecting to login                               | Clear your browser cache and try again    |
 | Access denied. Only administrators can access this dashboard. | You don't have admin access to the system |
 
 ---
@@ -67,32 +67,35 @@ Before using Play by Play Admin, ensure you have:
 
 ### Page Layout
 
-![Home Page Layout](https://i.ibb.co/9kLR4Mxr/home-active.png)
+![Home Page Layout](images/home-active.png)
 
 The Home Page consists of three main sections:
 
 #### Top Navigation Bar
+
 - **Logo**: Click to return to home from any page
 - **User Menu**: Displays your email and logout option
 - **Logout Button**: Click to safely exit the application
 
 #### Main Content Area
+
 - **Welcome Message**: "Welcome, [Your Name]"
 - **Create Game Button**: Large blue button labeled "+ Create Game"
 - **Active Games Section**: Shows games you're currently running
 
 #### Current Game Card
+
 - **Game Name**: Name of your active game
 - **Status**: Shows if the game is currently active
 - **Quick Actions**: Options to view or manage the game
 
 ### Key Features on Home Page
 
-| Feature | Description |
-|---------|-------------|
-| Create Game | Start a new game session |
-| View Active Games | See all games currently in progress |
-| Quick Dashboard Access | Jump directly to game dashboard |
+| Feature                | Description                         |
+| ---------------------- | ----------------------------------- |
+| Create Game            | Start a new game session            |
+| View Active Games      | See all games currently in progress |
+| Quick Dashboard Access | Jump directly to game dashboard     |
 
 ---
 
@@ -100,24 +103,26 @@ The Home Page consists of three main sections:
 
 ### Step 1: Open Create Game Modal
 
-![Create Game Button](https://i.ibb.co/5xk3qZ4w/create-game.png)
+![Create Game Button](images/create-game.png)
 
 1. On the Home Page, click the **"+ Create Game"** button
 2. A modal dialog will appear
 
 ### Step 2: Fill in Game Details
 
-![Create Game Modal](https://i.ibb.co/9mM85c3Q/create-game-filled.png)
+![Create Game Modal](images/create-game-filled.png)
 
 The Create Game modal has two required fields:
 
 #### Field 1: Game Name
+
 - **Label**: "Game Name"
 - **Instructions**: Enter a descriptive name for your game
 - **Example**:
   - "Championship Final - Team A vs Team B"
 
 #### Field 2: Game URL
+
 - **Label**: "Game URL"
 - **Supported Formats**:
   - YouTube links: `https://www.youtube.com/watch?v=...`
@@ -126,7 +131,6 @@ The Create Game modal has two required fields:
   - Direct video URLs: HTTP/HTTPS video file links
 
 ### Step 3: Create the Game
-
 
 1. Review the information you entered
 2. Click **"Create Game"** button to proceed
@@ -150,18 +154,21 @@ The Create Game modal has two required fields:
 
 ### Main Dashboard Layout
 
-![Dashboard Layout](https://i.ibb.co/r1x771w/dashboard.png)
+![Dashboard Layout](imagesdashboard.png)
 
 The Dashboard is divided into three main panels:
 
 ### Left Panel: App View
+
 - **Video Player**: Shows the current game video
 
 ### Middle Panel: Game Controls
+
 - **Play Templates**: Quick-access predefined plays
 - **Answer Selection**: Choose correct answers for verification
 
 ### Right Panel: Message Controls
+
 - **System Messages**: Game notifications and updates
 
 ### Top Navigation
@@ -176,14 +183,15 @@ The Dashboard is divided into three main panels:
 
 ### Understanding the Game Controls Panel
 
-![Game Controls Panel](https://i.ibb.co/nq3CDxdf/game-controls.png)
+![Game Controls Panel](images/game-controls.png)
 
 The Game Controls panel is where you manage all interactive elements of your game.
 
 ### Starting a play
 
 #### Step 1: Select a play
-![Play Selection](https://i.ibb.co/cK8VTGYd/start-play.png)
+
+![Play Selection](images/start-play.png)
 
 1. Click on one of the play option buttons
 2. The form will update based on your selection
@@ -191,40 +199,45 @@ The Game Controls panel is where you manage all interactive elements of your gam
 4. It will display a button to close the play if needed
 
 #### Step 2: Close a play
-![Close Play Button](https://i.ibb.co/N2pdK7J6/close-play.png)
+
+![Close Play Button](images/close-play.png)
 
 1. When ready to reveal answers, click the **"Close Play Window"** button
 2. The **"Close Play"** button will update to **"PLAY WINDOW CLOSED"**
 3. The play will be closed, and you can select the answer to the play
 
 #### Step 3: Select the answer
-![Select Answer](https://i.ibb.co/FLnHXxZd/send-answer.png)
+
+![Select Answer](images/send-answer.png)
 
 1. Click on one of the answer option buttons to select the correct answer
 2. The selected answer will be highlighted
 3. Click the **"Send Answers"** button to confirm your selection
 4. The correct answer will be sent to all connected players
 5. The play will be finally closed.
+
 ---
 
 ---
+
 ## Messaging
 
 ### Message Controls Panel Overview
 
-![Message Controls](https://i.ibb.co/F4KH3MJ8/message-controls.png)
+![Message Controls](images/message-controls.png)
 
 The right panel allows you to reward players.
 
 ### Type of Messages
 
 #### Reward Messages
+
 - **Automatic**: Sent by the system
 - **Content**: Congratulatory messages and rewards for correct answers to top players
 
 ### Sending a Message
 
-![Send Message](https://i.ibb.co/1t1RXnzf/send-message.png)
+![Send Message](images/send-message.png)
 
 1. Click on one of the message reward option buttons
 2. Two buttons will appear: **"Send"** and **"Cancel"**
@@ -238,22 +251,24 @@ The right panel allows you to reward players.
 ### Before You End the Game
 
 Ensure you have:
+
 - ✓ Asked all planned questions
 - ✓ Announced final results
 - ✓ Rewarded top players
 
 ### Step 1: Click End Game Button
 
-![End Game Button](https://i.ibb.co/20RpfBgM/end-game.png)
+![End Game Button](images/end-game.png)
 
 1. In the top navigation bar, click **"End Game"** button
 2. A confirmation dialog will appear
 
 ### Step 2: Confirm Game Termination
 
-![Confirm End Game](https://i.ibb.co/YBKfTPLh/end-game-modal.png)
+![Confirm End Game](images/end-game-modal.png)
 
 The dialog will show:
+
 - Game name: "[Game Name] will be ended"
 - Warning: "This action cannot be undone"
 - Confirmation buttons: **"Cancel"** or **"Confirm"**
@@ -262,9 +277,10 @@ The dialog will show:
 
 ### Step 3: Game Ended
 
-![Game Ended Success](https://i.ibb.co/s9zJp56B/ended-game.png)
+![Game Ended Success](images/ended-game.png)
 
 After confirmation:
+
 - You are redirected to the Home Page
 
 ---
@@ -294,4 +310,3 @@ A: No, you can only have one active game at a time as an admin. You must end the
 **Last Updated**: October 2025  
 **Version**: 1.0  
 **For**: Play by Play Admin Users
-
