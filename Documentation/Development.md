@@ -9,8 +9,9 @@
 5. [Project Structure](#project-structure)
 6. [Configuration Files](#configuration-files)
 7. [Running the Application](#running-the-application)
-8. [Testing Guide](#testing-guide)
-9. [Troubleshooting](#troubleshooting)
+8. [Replicating via Docker](#replicating-via-docker)
+9. [Testing Guide](#testing-guide)
+10. [Troubleshooting](#troubleshooting)
 
 ---
 
@@ -24,22 +25,22 @@
 
 ### Core Technologies
 
-| Technology | Version | Purpose |
-|-----------|---------|---------|
-| **React** | ^19.1.1 | UI framework for building interactive components |
-| **TypeScript** | ~5.9.3 | Type-safe JavaScript development |
-| **Vite** | ^7.1.7 | Fast build tool and development server |
-| **React Router** | ^7.9.4 | Client-side routing and navigation |
-| **Firebase** | ^12.4.0 | Authentication and backend services |
+| Technology       | Version | Purpose                                          |
+| ---------------- | ------- | ------------------------------------------------ |
+| **React**        | ^19.1.1 | UI framework for building interactive components |
+| **TypeScript**   | ~5.9.3  | Type-safe JavaScript development                 |
+| **Vite**         | ^7.1.7  | Fast build tool and development server           |
+| **React Router** | ^7.9.4  | Client-side routing and navigation               |
+| **Firebase**     | ^12.4.0 | Authentication and backend services              |
 
 ### Development Tools
 
-| Tool | Version | Purpose |
-|------|---------|---------|
-| **ESLint** | ^9.36.0 | Code linting and quality checks |
-| **@vitejs/plugin-react** | ^5.0.4 | React plugin for Vite |
-| **TypeScript ESLint** | ^8.45.0 | TypeScript-specific linting |
-| **Node.js** | 16+ (recommended 18+) | JavaScript runtime |
+| Tool                     | Version               | Purpose                         |
+| ------------------------ | --------------------- | ------------------------------- |
+| **ESLint**               | ^9.36.0               | Code linting and quality checks |
+| **@vitejs/plugin-react** | ^5.0.4                | React plugin for Vite           |
+| **TypeScript ESLint**    | ^8.45.0               | TypeScript-specific linting     |
+| **Node.js**              | 16+ (recommended 18+) | JavaScript runtime              |
 
 ---
 
@@ -91,6 +92,7 @@ For optimal development experience with VS Code, install:
 This command installs all dependencies listed in `package.json` into the `node_modules` directory.
 
 **Expected Output:**
+
 ```
 added 500+ packages in 45s
 ```
@@ -215,22 +217,28 @@ play-by-play-admin/
 ### Key Directories Explained
 
 #### `/src/components`
+
 Contains all reusable React components. Follows a modular structure where each component has:
+
 - `.tsx` file (component logic)
 - `.css` file (component styles)
 - Optional `types.ts` (component-specific types)
 - `components/` subfolder (nested components)
 
 #### `/src/pages`
+
 Top-level routed pages. These are rendered by React Router based on the URL path.
 
 #### `/src/contexts`
+
 Global state management using React Context API. Currently houses `AuthContext` for authentication state.
 
 #### `/src/config`
+
 Configuration files for external services (Firebase, APIs, etc.).
 
 #### `/src/types`
+
 Centralized TypeScript type definitions to maintain consistency across the app.
 
 ---
@@ -242,15 +250,16 @@ Centralized TypeScript type definitions to maintain consistency across the app.
 Vite build and development server configuration:
 
 ```typescript
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
-})
+});
 ```
 
 **What it does:**
+
 - Enables React plugin for JSX transformation
 - Configures hot module replacement (HMR)
 - Sets up build optimization
@@ -272,6 +281,7 @@ Root TypeScript configuration that references app and node configs:
 ### `tsconfig.app.json`
 
 Application-specific TypeScript settings:
+
 - Target ES2020 for modern JavaScript features
 - Enables JSX support
 - Configures module resolution
@@ -280,6 +290,7 @@ Application-specific TypeScript settings:
 ### `eslint.config.js`
 
 ESLint configuration for code quality:
+
 - React hooks linting rules
 - React refresh compatibility
 - TypeScript support
@@ -297,6 +308,7 @@ Start the development server with hot module replacement:
 ```
 
 **Expected Output:**
+
 ```
   VITE v7.1.7  ready in 234 ms
 
@@ -305,6 +317,48 @@ Start the development server with hot module replacement:
 ```
 
 Access the application at `http://localhost:5173/`
+
+---
+
+## Replicating via Docker
+
+The repository includes a Docker workflow that mirrors the local development setup. Use it when you want to avoid installing Node.js locally or to verify onboarding steps from a clean slate.
+
+### Prerequisites
+
+- The repository cloned locally (as described in [Environment Setup](#environment-setup))
+- Docker Desktop (or any Docker Engine) installed and running
+  - macOS (Homebrew):
+  ```bash
+  brew install --cask docker
+  open /Applications/Docker.app
+  ```
+    - Or download from https://www.docker.com/get-started
+    - You can follow the instructions if you are stuck at some point. 
+      - Windows: https://docs.docker.com/docker-for-windows/install/
+      - Mac: https://docs.docker.com/docker-for-mac/install/
+
+
+- `docker compose` (recommended): bundled with modern Docker Desktop releases. To install the standalone Compose plugin via Homebrew (if needed):
+  ```bash
+  brew install docker-compose
+    ```
+- A populated `.env` file at the project root containing the required `VITE_*` Firebase variables (same as the non-Docker setup)
+
+> **Important:** The compose file reads environment variables from your host machine at runtime. Ensure they are exported in your shell session or stored in a `.env` file that Docker can consume.
+
+### Quick Start (docker compose)
+
+```bash
+
+# Build the image and start the dev server with hot reload
+docker compose up --build
+
+# Shut everything down when finished
+docker compose down
+```
+
+When the container is running, open `http://localhost:5173` in your browser. Source code changes under the project directory trigger Vite's HMR thanks to the bind mount defined in `docker-compose.yml`.
 
 ---
 
@@ -320,6 +374,7 @@ Access the application at `http://localhost:5173/`
 4. Click "Login"
 
 **Expected Result:**
+
 - ✅ Credentials are stored in firebase
 - ✅ Redirected to `/` (home page)
 - ✅ User info displays in header
@@ -330,6 +385,7 @@ Access the application at `http://localhost:5173/`
 2. Try navigating to `/dashboard`
 
 **Expected Result:**
+
 - ✅ User has been logged out
 - ✅ Redirected to login page
 
@@ -342,6 +398,7 @@ Access the application at `http://localhost:5173/`
 3. Click "Create"
 
 **Expected Result:**
+
 - ✅ Modal closes
 - ✅ Redirected to `/dashboard`
 - ✅ Game controls initialize
@@ -352,6 +409,7 @@ Access the application at `http://localhost:5173/`
 2. From dashboard, click "Home" in navigation
 
 **Expected Result:**
+
 - ✅ Smooth page transitions
 - ✅ No errors in console
 - ✅ Layout renders correctly
@@ -365,6 +423,7 @@ Access the application at `http://localhost:5173/`
 3. Check for errors or warnings
 
 **Healthy Console Output:**
+
 ```
 [No errors]
 ```
@@ -376,14 +435,17 @@ Access the application at `http://localhost:5173/`
 3. Check request/response status
 
 **Expected Status Codes:**
+
 - `200`: Successful requests
 - `401`: Unauthorized (expected on login redirect)
 
 **Example Failure:**
+
 ```
 TypeError: Cannot read property 'map' of undefined
   at AppView.tsx:45
 ```
+
 **Action**: Check if data is properly loaded before rendering.
 
 ---
@@ -395,11 +457,13 @@ TypeError: Cannot read property 'map' of undefined
 #### Issue 1: Port 5173 Already in Use
 
 **Error:**
+
 ```
 Error: listen EADDRINUSE: address already in use :::5173
 ```
 
 **Solution:**
+
 ```bash
 
 # use a different port
@@ -409,12 +473,14 @@ npm run dev -- --port 5174
 #### Issue 2: Firebase Configuration Error
 
 **Error:**
+
 ```
 Failed to initialize Firebase: Missing API key or
 Uncaught FirebaseError: Firebase: Error (auth/invalid-api-key).
 ```
 
 **Solution:**
+
 1. Verify `.env` file exists in root directory
 2. Check all Firebase credentials are correctly set
 3. Restart development server to reload environment variables
@@ -422,16 +488,18 @@ Uncaught FirebaseError: Firebase: Error (auth/invalid-api-key).
 #### Issue 3: Dependencies Installation Failed
 
 **Error:**
+
 ```
 npm ERR! code E404
 npm ERR! 404 Not Found
 ```
 
 **Solution:**
+
 ```bash
 #   Clear npm cache
     npm cache clean --force
-    
+
     # Delete node_modules and reinstall
     rm -rf node_modules package-lock.json
     npm install
@@ -441,4 +509,3 @@ npm ERR! 404 Not Found
 
 **Last Updated**: October 2025
 **Maintainers**: [PxP Team]
-
