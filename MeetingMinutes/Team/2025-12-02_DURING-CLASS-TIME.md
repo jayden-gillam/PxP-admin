@@ -1,7 +1,7 @@
 # Team Meeting — December 02, 2025
 **Date:** December 02, 2025  
-**Meeting Start Time:** 10:00 PM EST  
-**Meeting End Time:** 10:55 PM EST  
+**Meeting Start Time:** 10:00 AM EST  
+**Meeting End Time:** 10:55 AM EST  
 **Location/Medium:** Zoom (During Class Time)  
 **Present:** Shristi, Nzenwata  
 **Minute Recorder:** Shristi Khadka  
