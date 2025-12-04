@@ -8,9 +8,10 @@
 4. [Creating a Game](#creating-a-game)
 5. [Dashboard Overview](#dashboard-overview)
 6. [Game Controls](#game-controls)
-7. [Messaging](#messaging)
-8. [Ending a Game](#ending-a-game)
-9. [FAQ](#faq)
+7. [Achievement Badges](#achievement-badges)
+8. [Keyboard Hotkeys](#keyboard-hotkeys)
+9. [Ending a Game](#ending-a-game)
+10. [FAQ](#faq)
 
 ---
 
@@ -119,22 +120,22 @@ The Create Game modal has two required fields:
 - **Label**: "Game Name"
 - **Instructions**: Enter a descriptive name for your game
 - **Example**:
-  - "Championship Final - Team A vs Team B"
+    - "Championship Final - Team A vs Team B"
 
 #### Field 2: Game URL
 
 - **Label**: "Game URL"
 - **Supported Formats**:
-  - YouTube links: `https://www.youtube.com/watch?v=...`
-  - Vimeo links: `https://vimeo.com/...`
-  - HLS streams: `.m3u8` file URLs
-  - Direct video URLs: HTTP/HTTPS video file links
+    - YouTube links: `https://www.youtube.com/watch?v=...`
+    - Vimeo links: `https://vimeo.com/...`
+    - HLS streams: `.m3u8` file URLs
+    - Direct video URLs: HTTP/HTTPS video file links
 
 ### Step 3: Create the Game
 
 1. Review the information you entered
 2. Click **"Create Game"** button to proceed
-   - OR click **"Cancel"** to close the modal without creating
+    - OR click **"Cancel"** to close the modal without creating
 
 ### Step 4: Confirmation
 
@@ -218,31 +219,266 @@ The Game Controls panel is where you manage all interactive elements of your gam
 
 ---
 
+### Creating Custom Questions (On-the-Fly)
+![Custom Question](images/custom-question.png)
+
+Custom questions allow you to create questions instantly during a game without using predefined templates. This is perfect for unexpected plays or situations that weren't anticipated.
+
+#### Step 1: Open Custom Question Modal
+
+1. In the Game Controls panel, locate the **"+ Custom Question"** button
+2. Click the button to open the Custom Question creation modal
+
+#### Step 2: Enter Question Details
+![Question Details](images/question-details.png)
+
+The Custom Question modal contains the following fields:
+
+**Question Text**
+
+- Enter your question text (up to 200 characters)
+- Example: "Will they go for a 2-point conversion?"
+
+**Options**
+
+- You can add 2 to 6 answer options
+- For each option:
+    - Enter the option text (up to 100 characters)
+    - Set the points value (between 1 and 100)
+- Click **"+ Add Option"** to add more options (up to 6 total)
+- Click the **×** button to remove an option (minimum 2 required)
+
+**Save as Template**
+
+- Check the **"Save as template for future use"** checkbox if you want to reuse this question in future games
+- If checked, the question will be saved to your question templates list
+- If unchecked, the question will be used only for this game session
+
+#### Step 3: Create the Question
+
+1. Review all fields to ensure they are correct
+2. Click **"Create Question"** to activate the question
+    - OR click **"Cancel"** to close without creating
+
+#### Step 4: Managing Custom Questions
+
+Once created, custom questions work just like template questions:
+
+1. The question appears in the Custom Question display area
+2. Players can submit their predictions
+3. When ready, close the play window (see [Step 2: Close a play](#step-2-close-a-play))
+4. Select the correct answer(s) from the options
+5. Click **"Send Answers"** to submit the results
+
+### Important Notes for Custom Questions
+
+- **Points Range**: Each option must have points between 1 and 100
+- **Minimum Options**: At least 2 options are required
+- **Maximum Options**: Up to 6 options can be added
+- **Template Saving**: If you save as template, the question will appear in your question list with a number (e.g., "#10 - Will they go for a 2-point conversion?")
+- **One-Time Use**: If not saved as template, the question is only available for the current game
+
 ---
 
-## Messaging
 
-### Message Controls Panel Overview
+## Achievement Badges
+![Achievement Badges](images/achievement-badges.png)
 
-![Message Controls](images/message-controls.png)
+### Badge System Overview
 
-The right panel allows you to reward players.
+The Achievement Badge system allows you to create, manage, and award badges to players based on their performance. Badges can be awarded automatically when players meet certain criteria, or manually by you as the game master.
 
-### Type of Messages
+### Creating a Badge
 
-#### Reward Messages
+#### Step 1: Open Create Badge Modal
 
-- **Automatic**: Sent by the system
-- **Content**: Congratulatory messages and rewards for correct answers to top players
+1. In the Badge Manager section, click the **"+ Create Badge"** button
+2. The Create Badge modal will appear
 
-### Sending a Message
+#### Step 2: Fill in Badge Details
+![Create Badge Modal](images/create-badge.png)
 
-![Send Message](images/send-message.png)
+**Basic Information**
 
-1. Click on one of the message reward option buttons
-2. Two buttons will appear: **"Send"** and **"Cancel"**
-3. Click **"Send"** to broadcast the message to all players
-4. Click **"Cancel"** to discard the message
+- **Badge Name**: Enter a descriptive name (e.g., "Point Master", "Sharp Shooter")
+- **Description**: Explain what the badge represents and how to earn it
+- **Icon**: Enter an emoji (e.g., 🏆, ⭐, 🎯) or an image URL
+- **Rarity**: Select from:
+    - **Common** (Gray) - Basic achievements
+    - **Rare** (Blue) - Uncommon achievements
+    - **Epic** (Purple) - Significant achievements
+    - **Legendary** (Orange) - Exceptional achievements
+
+**Badge Scope**
+
+- **Game-Specific**: Badge is only available for the current game
+- **Global**: Badge is available across all games
+
+**Awarding Criteria**
+Select how the badge is earned:
+
+- **Points Threshold**: Awarded when a player reaches a certain point total
+    - Enter the minimum points required (e.g., 100)
+- **Accuracy Threshold**: Awarded when a player achieves a certain accuracy percentage
+    - Enter the minimum accuracy percentage (e.g., 80)
+    - Requires at least 1 prediction to be eligible
+- **Participation Threshold**: Awarded when a player participates in a certain number of questions
+    - Enter the minimum number of questions (e.g., 10)
+- **Perfect Game**: Awarded when a player gets all predictions correct in a game
+    - No additional value required
+- **Manual**: Badge must be awarded manually by you
+    - Use this for special recognition or custom achievements
+
+**Points Reward** (Optional)
+
+- Enter bonus points to award when the badge is earned (e.g., 50)
+
+#### Step 3: Create the Badge
+
+1. Review all information
+2. Click **"Create Badge"** to save
+    - OR click **"Cancel"** to close without creating
+
+### Managing Badges
+![Manage Badge](images/manage-badges.png)
+
+#### Viewing Badges
+
+The Badge Manager displays all badges in a grid layout showing:
+
+- Badge icon and name
+- Description
+- Rarity level (color-coded)
+- Scope (game or global)
+- Number of times the badge has been earned
+- Action buttons (Edit, Award, Delete)
+
+#### Editing a Badge
+![Edit Badge Modal](images/edit-badge.png)
+
+1. Click the **Edit** icon (pencil) on the badge card
+2. Modify the badge details in the modal
+3. Click **"Update Badge"** to save changes
+
+> **Note**: You can only change the scope of a badge if it hasn't been earned yet.
+
+#### Deleting a Badge
+
+1. Click the **"Delete"** button on the badge card
+2. Confirm the deletion in the dialog
+3. The badge will be permanently removed
+
+### Awarding Badges
+
+#### Automatic Awarding
+
+Badges with criteria (points, accuracy, participation, perfect game) are automatically checked and awarded when:
+
+1. You click the **"Check & Award Badges"** button in the Badge Manager
+2. The system checks all players against badge criteria
+3. Players who meet the criteria automatically receive the badge
+4. A success message confirms the check is complete
+
+> **Tip**: It's recommended to check badges periodically during the game and especially before ending the game.
+
+#### Manual Awarding
+
+For badges with "Manual" criteria type:
+
+1. Click the **"Award"** button on the badge card
+2. Select a player from the dropdown list
+3. Click **"Award Badge"** to assign the badge
+4. The badge is immediately assigned to the selected player
+
+### Badge Statistics
+
+The Badge Manager displays:
+
+- **Total Badges**: Number of badges created for this game
+- **Awarded**: Total number of badge assignments (players who earned badges)
+
+### Important Notes for Badges
+
+- **Automatic Checking**: Badges are not checked automatically in real-time. Use "Check & Award Badges" to update awards.
+- **Game-Specific vs Global**: Game-specific badges only apply to the current game. Global badges apply across all games.
+- **Badge Rarity**: Rarity affects visual styling but doesn't impact functionality.
+- **Points Rewards**: Bonus points from badges are added to the player's total score.
+- **Multiple Badges**: Players can earn multiple badges in a single game.
+
+---
+
+## Keyboard Hotkeys
+
+### Overview
+
+Keyboard hotkeys allow you to quickly perform common actions without using the mouse. This can significantly speed up your workflow during active games.
+
+### Available Hotkeys
+
+#### Number Keys (1-9, 0)
+
+**Function**: Select a question template from the list
+
+**How to Use**:
+
+- Press **1** through **9** to select the first through ninth question template
+- Press **0** to select the tenth question template
+- The question is immediately created and activated
+
+**When Available**:
+
+- Always available when viewing the Game Controls panel
+- Works even when typing in form fields
+
+**Example**:
+
+- Press **3** to quickly activate the third question template in your list
+
+#### Spacebar
+
+**Function**: Close the active play window
+
+**How to Use**:
+
+- Press **Space** when a question is active (status: "Predictions OPEN")
+- The play window will close, allowing you to select answers
+
+**When Available**:
+
+- Only works when there is an active question with status "active"
+- Prevents default scrolling behavior
+
+**Example**:
+
+- After players have submitted predictions, press **Space** to close the question window
+
+#### Enter Key
+
+**Function**: Send selected answers
+
+**How to Use**:
+
+- Select one or more answer options
+- Press **Enter** to submit the selected answers
+- Answers are sent to all players immediately
+
+**When Available**:
+
+- Only works when you have selected at least one answer
+- Works in form fields and throughout the interface
+
+**Example**:
+
+- After closing a question and selecting the correct answer, press **Enter** instead of clicking "Send Answers"
+
+### Hotkey Reference Table
+
+| Hotkey    | Action                             | When Available            |
+| --------- | ---------------------------------- | ------------------------- |
+| **1-9**   | Select question template (1st-9th) | Always                    |
+| **0**     | Select question template (10th)    | Always                    |
+| **Space** | Close play window                  | When question is active   |
+| **Enter** | Send selected answers              | When answers are selected |
 
 ---
 
@@ -255,6 +491,7 @@ Ensure you have:
 - ✓ Asked all planned questions
 - ✓ Announced final results
 - ✓ Rewarded top players
+- ✓ Checked and awarded achievement badges (click "Check & Award Badges" in Badge Manager)
 
 ### Step 1: Click End Game Button
 
@@ -303,10 +540,22 @@ A: Log back in immediately. Your game should still be active, and you can resume
 **Q: Can I have multiple games running simultaneously?**  
 A: No, you can only have one active game at a time as an admin. You must end the current game before starting a new one.
 
+**Q: Can I create questions that aren't in the template list?**  
+A: Yes! Use the "+ Custom Question" button to create questions on-the-fly. You can optionally save them as templates for future use.
+
+**Q: How do badges get awarded to players?**  
+A: Badges with automatic criteria (points, accuracy, participation, perfect game) are awarded when you click "Check & Award Badges". Manual badges must be awarded by clicking the "Award" button on the badge.
+
+**Q: Can I use keyboard shortcuts to speed up my workflow?**  
+A: Yes! Press number keys (1-9, 0) to select questions, Space to close play windows, and Enter to send answers. See the [Keyboard Hotkeys](#keyboard-hotkeys) section for details.
+
+**Q: What's the difference between game-specific and global badges?**  
+A: Game-specific badges only apply to the current game. Global badges are available across all games and can be earned by players in any game session.
+
 ---
 
 ## Document Information
 
-**Last Updated**: October 2025  
-**Version**: 1.0  
+**Last Updated**: December 2025  
+**Version**: 2.0  
 **For**: Play by Play Admin Users
