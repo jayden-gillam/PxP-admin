@@ -70,6 +70,26 @@
   The system’s interface must be refined to match the updated Figma design.  
   This includes improving spacing, typography, button styling, and layout consistency across pages such as the Game Master dashboard, Create Game screen, and leaderboard view.
   - Priority: MEDIUM
+    
+ - **FR16: Sync Status Indicator**  
+  The system must display how many players are behind in the stream (e.g., “8% ~2.3 seconds”).  
+  It should also suggest when a resync may be needed, but resync remains fully manual.  
+    - Priority: MEDIUM
+
+- **FR17: Custom Question Image Support**  
+  The system must allow Game Masters to upload optional images when creating custom questions.   
+  Saved templates should retain their associated images.  
+    - Priority: HIGH
+
+- **FR18: Template Builder Page**  
+  The system must provide a dedicated page for creating, editing, and managing template sets (e.g., Football Set, Basketball).  
+    - Priority: HIGH
+
+- **FR19: Game Template Selection**  
+  The system must allow Game Masters to choose a template set when creating a new game.  
+  Once selected, the system automatically loads all questions from that template set.  
+    - Priority: MEDIUM
+
 
 
 ---
