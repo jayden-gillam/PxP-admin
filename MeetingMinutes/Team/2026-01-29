@@ -1,0 +1,31 @@
+# Team Meeting - January 29, 2026
+
+**Date:** January 29, 2026  
+**Meeting Start Time:** 9:00 PM EST  
+**Meeting End Time:** 9:30 PM EST  
+**Location/Medium:** Zoom  
+**Present:** Jayden, Shristi, Liam, and Sinclair  
+**Minute Recorder:** Jayden Gillam  
+
+## Topics Discussed
+
+- Template Builder progress
+- Firebase DB structure
+- Feature implementation strategies
+
+## Things Clarified
+
+- Create Custom Question Modal reused in Template Builder for now
+- Drew is working on the Template Builder UI, which will resemble the Home page
+
+## Tasks distributed
+
+- Jayden: Add the final component and implement the set manager modal for the template builder after the meeting.
+- Jayden: Add tests for the template builder functionality.
+- Jayden: Create a bug report (assignment) due tomorrow.
+- Jayden: Make a pull request for the template builder, preferably by tomorrow, to avoid merge conflicts with Shristi’s changes.
+- Jayden: Send out the meeting link and handle meeting notes for next Tuesday’s meeting with Matt.
+- Shristi: Complete the feature by tomorrow night.
+- Shristi: Decide on a second feature and inform Liam to ensure features do not overlap.
+- Liam: Decide on and implement at least one feature by tomorrow night, and inform the team about the chosen feature.
+- Team: Review and consider refactoring the large “set answer” function in the game service.
