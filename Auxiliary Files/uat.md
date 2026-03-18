@@ -1,6 +1,5 @@
 # User Acceptance Testing (UAT) Document
 
-## Version: 5.1.0
 
 This document defines acceptance tests for the core features of the Play by Play Admin application.
 
