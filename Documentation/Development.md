@@ -26,6 +26,619 @@
 - **Keyboard Hotkeys**: Fast workflow with keyboard shortcuts
 - **Firebase Integration**: Authentication and real-time database
 - **Type-Safe Development**: Full TypeScript support
+- **Observer Pattern Architecture**: Decoupled event-driven system for game events
+
+---
+
+## System Architecture Overview
+
+### High-Level Architecture Diagram
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                           PLAY BY PLAY ADMIN                                │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│  ┌──────────────────┐                      ┌──────────────────────────┐   │
+│  │   React UI Layer │                      │   Authentication Layer   │   │
+│  │                  │                      │                          │   │
+│  │ • Dashboard      │  ◄────────────────►  │ • Login                 │   │
+│  │ • Game Controls  │                      │ • Register              │   │
+│  │ • Badge Manager  │                      │ • Auth Context          │   │
+│  │ • Template Build │                      │ • Protected Routes      │   │
+│  │ • Players Lookup │                      │ • Auth Hooks            │   │
+│  │ • Custom Hotkeys │                      └──────────────────────────┘   │
+│  │ • Legends Mgr    │                                                     │
+│  │ • Probability    │                                                     │
+│  └──────────────────┘                                                     │
+│            │                                                              │
+│            ▼                                                              │
+│  ┌──────────────────────────────────────────────────────────────────┐    │
+│  │         Service Layer (Business Logic)                           │    │
+│  │                                                                  │    │
+│  │  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐          │    │
+│  │  │ GameService  │  │ QuestionSvc  │  │ BadgeService │          │    │
+│  │  └──────────────┘  └──────────────┘  └──────────────┘          │    │
+│  │                                                                  │    │
+│  │  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐          │    │
+│  │  │UserStatsService                  │  MessageService         │    │
+│  │  │PlayerLookupService            │  │ AuditService │          │    │
+│  │  └──────────────┘  └──────────────┘  └──────────────┘          │    │
+│  │                                                                  │    │
+│  └────────────────────────────────────────────────────────────────┘    │
+│                │                   │                                    │
+│                ▼                   ▼                                    │
+│  ┌──────────────────────┐    ┌──────────────────────┐                 │
+│  │  EVENT SYSTEM (Core) │    │  CRUD Operations     │                 │
+│  │                      │    │                      │                 │
+│  │ GameEventEmitter     │    │ • firebaseGameCrud   │                 │
+│  │ (Subject/Publisher)  │    │ • firebaseQuestCrud  │                 │
+│  │                      │    │ • firebaseUserCrud   │                 │
+│  │ Events:              │    │ • firebaseBadgeCrud  │                 │
+│  │ • answer:set         │    │ • firebaseAuthCrud   │                 │
+│  │ • question:opened    │    │ • firebaseMessageCrud                 │
+│  │ • question:closed    │    │                      │                 │
+│  │ • game:started       │    │ (Firestore queries)  │                 │
+│  │ • game:ended         │    └──────────────────────┘                 │
+│  └──────────────────────┘                  │                          │
+│            │                               ▼                          │
+│            │                    ┌──────────────────────┐              │
+│            │                    │   FIREBASE (Backend) │              │
+│            │                    │                      │              │
+│            │                    │ • Firestore DB       │              │
+│            │                    │ • Authentication     │              │
+│            │                    │ • Real-time Updates  │              │
+│            │                    └──────────────────────┘              │
+│            │                                                          │
+│            ▼                                                          │
+│  ┌──────────────────────────────────────────────────────────────┐   │
+│  │  OBSERVER PATTERN (Event Subscribers)                        │   │
+│  │                                                              │   │
+│  │  ┌──────────────────┐  ┌──────────────────┐               │   │
+│  │  │UserStatsObserver │  │GameLeaderboardObs│               │   │
+│  │  │                  │  │                  │               │   │
+│  │  │• answer:set      │  │• answer:set      │               │   │
+│  │  │• Updates stats   │  │• Updates game LB │               │   │
+│  │  └──────────────────┘  └──────────────────┘               │   │
+│  │                                                              │   │
+│  │  ┌──────────────────┐                                       │   │
+│  │  │GroupLeaderboardObs                                       │   │
+│  │  │                  │                                       │   │
+│  │  │• answer:set      │                                       │   │
+│  │  │• Updates group LB│                                       │   │
+│  │  └──────────────────┘                                       │   │
+│  └──────────────────────────────────────────────────────────────┘   │
+│                                                                      │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+### Architecture Layers
+
+#### 1. **UI Layer (React Components)**
+- Entry point for all user interactions
+- Components for game management, question templates, badges, player lookup
+- Communicates with services via custom hooks
+- Updates state reactively
+
+#### 2. **Authentication Layer**
+- Manages user authentication state
+- Provides context for protected routes
+- Handles login, registration, and session management
+
+#### 3. **Service Layer (Business Logic)**
+- Core application logic encapsulated in service classes
+- Services implement business rules independently
+- Examples: GameService, QuestionService, BadgeService, UserStatsService
+- Services coordinate with CRUD layer and event system
+
+#### 4. **Event System (Observer Pattern - Core)**
+- **GameEventEmitter**: Central pub/sub bus for game domain events
+- Decouples services and allows reactive updates
+- Enables independent scaling of event subscribers
+- See [Observer Design Pattern](#observer-design-pattern) section below
+
+#### 5. **CRUD Layer (Data Operations)**
+- Direct Firebase database operations
+- Each entity has dedicated CRUD file (gamesCrud, questionsCrud, etc.)
+- Handles read, create, update, delete operations
+- Tested via integration tests against Firebase Emulator
+
+#### 6. **Firebase Backend**
+- Firestore database for persistent data storage
+- Authentication service for user management
+- Real-time listeners for live updates
+
+### Data Flow Example: Submitting an Answer
+
+```
+User clicks "Submit Answer" in Dashboard
+          │
+          ▼
+GameControls.tsx (AnswerSelector)
+          │
+          ▼
+questionService.setAnswerService()
+          │
+          ├─► CRUD: Update question with user's answer
+          │
+          ├─► Event: gameEventEmitter.notify("answer:set", payload)
+          │
+          ▼
+    ┌─────────────────────────────────────────┐
+    │  Event Subscribers (Observers) Trigger   │
+    └─────────────────────────────────────────┘
+          │
+          ├─► UserStatsObserver.onEvent()
+          │        └─► userStatsService.updateUserStats()
+          │            └─► CRUD: Update user stats
+          │
+          ├─► GameLeaderboardObserver.onEvent()
+          │        └─► gameLeaderboardService.updateLeaderboard()
+          │            └─► CRUD: Update game leaderboard
+          │
+          └─► GroupLeaderboardObserver.onEvent()
+               └─► groupLeaderboardService.updateGroupLeaderboards()
+                   └─► CRUD: Update group leaderboards
+          │
+          ▼
+    Firestore updates propagate
+          │
+          ▼
+    UI re-renders with new data (via React hooks)
+```
+
+### Key Architectural Principles
+
+1. **Separation of Concerns**: Each layer has a single responsibility
+2. **Dependency Inversion**: Services depend on abstractions (interfaces), not concrete implementations
+3. **Observer Pattern**: Decouples event publishers from subscribers
+4. **Type Safety**: Full TypeScript support prevents runtime errors
+5. **Testability**: Clear boundaries make unit and integration testing straightforward
+6. **Scalability**: New observers can be added without modifying existing code
+
+---
+
+## Observer Design Pattern Implementation
+
+### Why Observer Pattern?
+
+The Observer Pattern is a behavioral design pattern that defines a one-to-many dependency between objects. When one object (the Subject) changes state, all its observers (Subscribers) are notified automatically.
+
+**Benefits in this application:**
+
+- **Decoupling**: Services don't need to know about each other
+- **Scalability**: Add new observers without modifying existing code
+- **Separation of Concerns**: Each observer handles one responsibility
+- **Testability**: Observers can be tested independently
+- **Flexibility**: Observers can be registered/unregistered at runtime
+
+### Observer Pattern Architecture
+
+```
+┌────────────────────────┐
+│  GameEventEmitter      │  (Subject/Publisher)
+│  (Central Bus)         │
+│                        │
+│ • observers Map        │
+│ • subscribe()          │
+│ • unsubscribe()        │
+│ • notify()             │
+│ • clearAllListeners()  │
+└────────────┬───────────┘
+             │
+             │ notifies when events occur
+             │
+    ┌────────┴────────┬────────────┬────────────┐
+    │                 │            │            │
+    ▼                 ▼            ▼            ▼
+┌─────────┐   ┌──────────────┐  ┌──────────────┐  ┌──────────────┐
+│Observer1│   │ Observer2    │  │ Observer3    │  │ ObserverN    │
+│         │   │              │  │              │  │              │
+│onEvent()│   │ onEvent()    │  │ onEvent()    │  │ onEvent()    │
+└─────────┘   └──────────────┘  └──────────────┘  └──────────────┘
+    │              │                 │               │
+    ▼              ▼                 ▼               ▼
+┌─────────┐   ┌──────────────┐  ┌──────────────┐  ┌──────────────┐
+│Service A│   │ Service B    │  │ Service C    │  │ Service N    │
+└─────────┘   └──────────────┘  └──────────────┘  └──────────────┘
+```
+
+### GameEventEmitter (Subject/Publisher)
+
+The `GameEventEmitter` is the central event bus that manages all game domain events.
+
+**Location:** `/src/services/events/gameEventEmitter.ts`
+
+**Supported Events:**
+
+```typescript
+type GameEvent = 
+  | "answer:set"        // Answer submitted for a question
+  | "question:opened"   // Question opened for play
+  | "question:closed"   // Question closed
+  | "game:started"      // Game session started
+  | "game:ended";       // Game session ended
+```
+
+**Key Methods:**
+
+```typescript
+// Subscribe an observer to an event
+subscribe<T extends GameEvent>(event: T, observer: Observer<T>): void
+
+// Unsubscribe an observer from an event
+unsubscribe<T extends GameEvent>(event: T, observer: Observer<T>): void
+
+// Notify all observers of an event with payload
+async notify<T extends GameEvent>(
+  event: T, 
+  payload: GameEventPayloadMap[T]
+): Promise<void>
+
+// Clear all listeners (useful for testing)
+clearAllListeners(): void
+```
+
+**Event Payloads:**
+
+Each event type has an associated payload:
+
+```typescript
+// When an answer is submitted
+"answer:set" → AnswerSetPayload {
+  questionId: string;
+  answerId: string[];
+  gameId: string;
+  adminId: string;
+  templateId?: string;
+  customOptions?: Array<{id, text, points}>;
+}
+
+// When a question is opened
+"question:opened" → {
+  questionId: string;
+  gameId: string;
+}
+
+// When a question is closed
+"question:closed" → {
+  questionId: string;
+  gameId: string;
+}
+
+// When a game starts
+"game:started" → {
+  gameId: string;
+}
+
+// When a game ends
+"game:ended" → {
+  gameId: string;
+}
+```
+
+### Concrete Observers
+
+Observers implement the `IGameObserver` interface and handle specific events.
+
+**Interface:**
+
+```typescript
+interface IGameObserver<T extends GameEvent = GameEvent> {
+  readonly eventType: T;  // Which event this observer listens for
+  onEvent(payload: GameEventPayloadMap[T]): Promise<void>;  // Handler
+}
+```
+
+#### 1. UserStatsObserver
+
+**Purpose:** Updates user statistics when an answer is submitted
+
+**Location:** `/src/services/events/observers/userStatsObserver.ts`
+
+```typescript
+export class UserStatsObserver implements IGameObserver<"answer:set"> {
+  readonly eventType = "answer:set" as const;
+
+  constructor(private userStatsService: IUserStatsService) {}
+
+  async onEvent(payload: AnswerSetPayload): Promise<void> {
+    console.log("[UserStatsObserver] Handling answer:set");
+    await this.userStatsService.updateUserStatsFromQuestionService(
+      payload.questionId,
+      payload.answerId,
+      payload.templateId,
+      payload.customOptions,
+    );
+    console.log("[UserStatsObserver] User stats updated");
+  }
+}
+```
+
+**Responsibilities:**
+- Listen for `"answer:set"` events
+- Extract answer payload
+- Call `UserStatsService` to update player statistics
+- Handle errors gracefully
+
+#### 2. GameLeaderboardObserver
+
+**Purpose:** Updates game-specific leaderboard scores when answers are submitted
+
+**Location:** `/src/services/events/observers/gameLeaderboardObserver.ts`
+
+**Responsibilities:**
+- Listen for `"answer:set"` events
+- Update game leaderboard with new scores
+- Track player rankings within a specific game
+
+#### 3. GroupLeaderboardObserver
+
+**Purpose:** Updates group-level leaderboards across multiple games
+
+**Location:** `/src/services/events/observers/groupLeaderboardObserver.ts`
+
+**Responsibilities:**
+- Listen for `"answer:set"` events
+- Update all group leaderboards affected by the answer
+- Maintain cross-game player rankings
+
+### Observer Registration
+
+Observers are wired together in the `serviceProvider.ts` file at application startup.
+
+**Location:** `/src/providers/serviceProvider.ts`
+
+```typescript
+// Create observer instances
+const userStatsObserver = new UserStatsObserver(userStatsService);
+const gameLeaderboardObserver = new GameLeaderboardObserver(
+  gameLeaderboardService,
+);
+const groupLeaderboardObserver = new GroupLeaderboardObserver(
+  groupLeaderboardService,
+);
+
+// Register observers with the event emitter
+gameEventEmitter.subscribe("answer:set", (payload: AnswerSetPayload) =>
+  userStatsObserver.onEvent(payload),
+);
+gameEventEmitter.subscribe("answer:set", (payload: AnswerSetPayload) =>
+  gameLeaderboardObserver.onEvent(payload),
+);
+gameEventEmitter.subscribe("answer:set", (payload: AnswerSetPayload) =>
+  groupLeaderboardObserver.onEvent(payload),
+);
+```
+
+### How It Works: Complete Flow
+
+**Step 1: Event Trigger**
+
+When a user submits an answer during a game:
+
+```typescript
+// In QuestionService.setAnswerService()
+await questionsCrud.updateQuestion(questionId, { answerId: selectedAnswers });
+
+// Emit the event
+await gameEventEmitter.notify("answer:set", {
+  questionId,
+  answerId: selectedAnswers,
+  gameId,
+  adminId,
+  templateId,
+  customOptions,
+});
+```
+
+**Step 2: Event Emission**
+
+The `GameEventEmitter.notify()` method:
+
+1. Gets all observers listening for `"answer:set"`
+2. Calls each observer's handler concurrently using `Promise.allSettled()`
+3. Logs any errors without stopping other observers
+
+```typescript
+async notify<T extends GameEvent>(
+  event: T,
+  payload: GameEventPayloadMap[T],
+): Promise<void> {
+  const list = this.observers.get(event) ?? [];
+
+  const results = await Promise.allSettled(
+    list.map((observer) =>
+      observer(payload as GameEventPayloadMap[GameEvent]),
+    ),
+  );
+
+  // Error handling for each observer
+  results.forEach((result, index) => {
+    if (result.status === "rejected") {
+      console.error(
+        `[GameEventEmitter] Observer ${index} failed for "${event}":`,
+        result.reason,
+      );
+    }
+  });
+}
+```
+
+**Step 3: Observer Notification**
+
+Each registered observer executes independently:
+
+```typescript
+// UserStatsObserver
+await userStatsService.updateUserStatsFromQuestionService(
+  questionId,
+  answerId,
+  templateId,
+  customOptions,
+);
+
+// GameLeaderboardObserver
+await gameLeaderboardService.updateGameLeaderboardFromResultsService(
+  questionId,
+  answerId,
+  gameId,
+);
+
+// GroupLeaderboardObserver
+await groupLeaderboardService.updateAllGroupLeaderboardsForQuestion(
+  questionId,
+  answerId,
+  gameId,
+);
+```
+
+**Step 4: Database Updates**
+
+Each observer updates the Firestore database independently through their respective CRUD layer.
+
+### Key Design Decisions
+
+#### 1. **Asynchronous Execution**
+
+All observers execute concurrently:
+
+```typescript
+// Uses Promise.allSettled for fault tolerance
+const results = await Promise.allSettled(observerCalls);
+```
+
+**Benefit**: Slow observers don't block fast ones
+
+#### 2. **Fault Tolerance**
+
+If one observer fails, others still run:
+
+```typescript
+Promise.allSettled()  // Not Promise.all()
+```
+
+**Benefit**: Resilience - one failing observer doesn't crash the system
+
+#### 3. **Type Safety**
+
+Each observer is typed to handle specific events:
+
+```typescript
+class UserStatsObserver implements IGameObserver<"answer:set"> {
+  // Can only handle "answer:set" events
+}
+```
+
+**Benefit**: Compile-time errors catch misconfigurations
+
+#### 4. **Observer Independence**
+
+Observers don't know about each other:
+
+```typescript
+// UserStatsObserver only knows about UserStatsService
+// GameLeaderboardObserver only knows about GameLeaderboardService
+// They don't import or reference each other
+```
+
+**Benefit**: Easy to add/remove observers without side effects
+
+### Testing the Observer Pattern
+
+#### Unit Tests
+
+Test each observer in isolation:
+
+```typescript
+describe("UserStatsObserver", () => {
+  it("calls updateUserStatsFromQuestionService with correct arguments", async () => {
+    const service = makeService();
+    const observer = new UserStatsObserver(service);
+    await observer.onEvent(BASE_PAYLOAD);
+    expect(service.updateUserStatsFromQuestionService).toHaveBeenCalledOnce();
+  });
+});
+```
+
+#### Integration Tests
+
+Test the full event flow:
+
+```typescript
+describe("setAnswerService integration — Observer pattern", () => {
+  it("notifies all registered observers", async () => {
+    const { emitter } = buildWiredSystem();
+    const service = buildQuestionService();
+    
+    const observer1 = vi.fn().mockResolvedValue(undefined);
+    const observer2 = vi.fn().mockResolvedValue(undefined);
+    
+    emitter.subscribe("answer:set", observer1);
+    emitter.subscribe("answer:set", observer2);
+    
+    await service.setAnswerService("q-1", ["opt-a"], "game-1", "admin-1");
+    
+    expect(observer1).toHaveBeenCalledOnce();
+    expect(observer2).toHaveBeenCalledOnce();
+  });
+});
+```
+
+### Best Practices for Observers
+
+1. **Single Responsibility**: Each observer handles one event and one action
+2. **Error Handling**: Handle errors gracefully within `onEvent()`
+3. **Async Operations**: Use `async/await` for database operations
+4. **Logging**: Log important steps for debugging
+5. **Testing**: Test observers independently and in integration
+6. **Type Safety**: Always implement `IGameObserver<T>`
+7. **Lazy Registration**: Observers are registered at startup in `serviceProvider.ts`
+
+### Adding a New Observer
+
+To add a new observer (e.g., NotificationObserver):
+
+**Step 1: Create the observer class**
+
+```typescript
+// /src/services/events/observers/notificationObserver.ts
+export class NotificationObserver implements IGameObserver<"answer:set"> {
+  readonly eventType = "answer:set" as const;
+
+  constructor(private notificationService: INotificationService) {}
+
+  async onEvent(payload: AnswerSetPayload): Promise<void> {
+    await this.notificationService.sendNotification(
+      payload.adminId,
+      `Answer received for question ${payload.questionId}`,
+    );
+  }
+}
+```
+
+**Step 2: Register in serviceProvider.ts**
+
+```typescript
+// Create instance
+const notificationObserver = new NotificationObserver(notificationService);
+
+// Register with emitter
+gameEventEmitter.subscribe("answer:set", (payload: AnswerSetPayload) =>
+  notificationObserver.onEvent(payload),
+);
+```
+
+**Step 3: Test independently and in integration**
+
+```typescript
+// Unit test
+describe("NotificationObserver", () => {
+  it("sends notification on answer:set", async () => {
+    // Test implementation
+  });
+});
+```
 
 ---
 
@@ -398,7 +1011,7 @@ Business logic layer. Services:
 ```typescript
 // Service implements interface
 class QuestionService implements IQuestionService {
-  // Business logic here
+    // Business logic here
 }
 
 // CRUD operations in separate layer
