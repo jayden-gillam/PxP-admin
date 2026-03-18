@@ -7,16 +7,22 @@
 3. [Registering a New Account](#registering-a-new-account)
 4. [Home Page Overview](#home-page-overview)
 5. [Creating a Game](#creating-a-game)
-6. [Dashboard Overview](#dashboard-overview)
-7. [Game Controls](#game-controls)
-8. [Messaging](#messaging)
-9. [Achievement Badges](#achievement-badges)
-10. [Template Builder](#template-builder)
-11. [Game History](#game-history)
-12. [Audit Logs](#audit-logs)
-13. [Keyboard Hotkeys](#keyboard-hotkeys)
-14. [Ending a Game](#ending-a-game)
-15. [FAQ](#faq)
+6. [Managing Scheduled Games](#managing-scheduled-games)
+7. [Dashboard Overview](#dashboard-overview)
+8. [Game Controls](#game-controls)
+9. [Messaging](#messaging)
+10. [Achievement Badges](#achievement-badges)
+11. [Template Builder](#template-builder)
+12. [Probability Manager](#probability-manager)
+13. [Legends Manager](#legends-manager)
+14. [Players Lookup](#players-lookup)
+15. [Game History](#game-history)
+16. [Custom Hotkeys](#custom-hotkeys)
+17. [Audit Logs](#audit-logs)
+18. [Keyboard Hotkeys](#keyboard-hotkeys)
+19. [Theme Toggle](#theme-toggle)
+19. [Ending a Game](#ending-a-game)
+20. [FAQ](#faq)
 
 ---
 
@@ -52,7 +58,7 @@ Before using Play by Play Admin, ensure you have:
 
 ### Step 2: After Successful Login
 
-![Successful Login](images/home.png)
+![Successful Login](images/new-home.png)
 
 - You will be automatically redirected to the **Home Page**
 - Your email will appear in the top-right corner of the screen
@@ -75,17 +81,42 @@ Before using Play by Play Admin, ensure you have:
 
 If you don't have an account yet, you can register for a new admin account directly from the login page.
 
-### Step 1: Fill in Registration Details
+### Step 1: Access Registration Page
 
-![Register Page](images/register.png)
+![Register Link](images/register-link.png)
+
+1. On the login screen, click the **"Register"** or **"Create Account"** link
+2. You will be redirected to the registration page
+
+### Step 2: Fill in Registration Details
+
+![Register Page](images/register-page.png)
 
 The registration form requires the following information:
 
 #### Field 1: Email Address
+
+- **Label**: "Email"
+- **Instructions**: Enter a valid email address
+- **Requirements**: Must be a valid email format
+- **Note**: This email will be used for login and account recovery
+
 #### Field 2: Password
+
+- **Label**: "Password"
+- **Instructions**: Create a secure password
+- **Requirements**:
+    - Must meet Firebase authentication requirements
+    - Should be at least 6 characters (Firebase minimum)
+    - Use a combination of letters, numbers, and special characters for better security
+
 #### Field 3: Confirm Password
 
-### Step 2: Submit Registration
+- **Label**: "Confirm Password"
+- **Instructions**: Re-enter your password to confirm
+- **Requirements**: Must match the password entered above
+
+### Step 3: Submit Registration
 
 1. Review all information to ensure it's correct
 2. Click the **"Register"** button
@@ -100,22 +131,21 @@ The registration form requires the following information:
 
 ### Troubleshooting Registration
 
-| Issue                          | Solution                                    |
-| ------------------------------ | ------------------------------------------- |
-| "Email already in use"         | This email is already registered. Use login instead |
-| "Passwords do not match"       | Ensure both password fields are identical   |
-| "Password too weak"            | Use a stronger password (6+ characters)    |
-| "Invalid email format"         | Check that your email address is valid      |
-| Registration button disabled   | Ensure all fields are filled correctly      |
+| Issue                        | Solution                                            |
+| ---------------------------- | --------------------------------------------------- |
+| "Email already in use"       | This email is already registered. Use login instead |
+| "Passwords do not match"     | Ensure both password fields are identical           |
+| "Password too weak"          | Use a stronger password (6+ characters)             |
+| "Invalid email format"       | Check that your email address is valid              |
+| Registration button disabled | Ensure all fields are filled correctly              |
 
 ---
-
 
 ## Home Page Overview
 
 ### Page Layout
 
-![Home Page Layout](images/home-page.png)
+![Home Page Layout](images/new-home.png)
 
 The Home Page consists of three main sections:
 
@@ -148,13 +178,13 @@ The Home Page consists of three main sections:
 
 ### Key Features on Home Page
 
-| Feature                | Description                         |
-| ---------------------- | ----------------------------------- |
-| Create Game            | Start a new game session            |
-| Schedule Game          | Create a game for a future date/time |
-| View Active Games      | See all games currently in progress |
+| Feature                | Description                            |
+| ---------------------- | -------------------------------------- |
+| Create Game            | Start a new game session               |
+| Schedule Game          | Create a game for a future date/time   |
+| View Active Games      | See all games currently in progress    |
 | Manage Scheduled Games | Edit, start, or delete scheduled games |
-| Quick Dashboard Access | Jump directly to game dashboard     |
+| Quick Dashboard Access | Jump directly to game dashboard        |
 
 ---
 
@@ -162,12 +192,14 @@ The Home Page consists of three main sections:
 
 ### Step 1: Open Create Game Modal
 
-![Create Game Button](images/create-game-update.png)
+![Create Game Button](images/create-game.png)
 
 1. On the Home Page, click the **"+ Create Game"** button
 2. A modal dialog will appear
 
 ### Step 2: Fill in Game Details
+
+![Create Game Modal](images/create-game-filled.png)
 
 The Create Game modal has the following fields:
 
@@ -198,7 +230,7 @@ The Create Game modal has the following fields:
 - **Label**: "Template Set"
 - **Instructions**: Select a question set to pre-populate questions for this game
 - **Options**:
-    - "None" - Start with no pre-loaded questions
+    - "None" - Start with no preloaded questions
     - Any set you've created in Template Builder
 - **Note**: Selecting a template set will make those questions available in the Game Controls panel
 
@@ -233,8 +265,84 @@ The Create Game modal has the following fields:
 - A success message will appear: "Game scheduled successfully!"
 - The game appears in the **Scheduled Games** section on the Home Page
 - The game will remain scheduled until you start it
+
+### Important Notes
+
+- **Create Game Limitations**: Only one active game allowed at a time
+- **Game URL**: Ensure the video URL is publicly accessible
+- **Supported Formats**: If your video link doesn't work, verify it's in a supported format
+- **Duration**: Games remain active until you manually end them
+- **Scheduled Games**: Can be edited, started, or deleted before they begin
+- **Scheduling**: Scheduled games do not start automatically - you must manually start them when ready
+
 ---
 
+## Managing Scheduled Games
+
+### Overview
+
+Scheduled games allow you to prepare games in advance and start them at a specific date and time. This is useful for planning events, ensuring all details are set up before the game begins.
+
+### Viewing Scheduled Games
+
+![Scheduled Games Section](images/new-home.png)
+
+1. On the Home Page, scroll to the **"Scheduled Games"** section
+2. All your scheduled games are displayed as cards
+3. Each card shows:
+    - Game name
+    - Scheduled date and time
+    - Action buttons
+
+### Starting a Scheduled Game
+
+![Start Scheduled Game](images/schedule-game.png)
+
+1. Find the scheduled game you want to start
+2. Click the **"Start Game Now"** button on the game card
+3. The game will immediately become active
+4. You will be redirected to the **Dashboard**
+
+> **Note**: You can start a scheduled game at any time, even before the scheduled date/time.
+
+### Editing a Scheduled Game
+
+![Edit Scheduled Game](images/schedule-game.png)
+
+1. Find the scheduled game you want to edit
+2. Click the **Edit** icon (pencil) button on the game card
+3. The Create Game modal will open with the game's current details
+4. Modify any fields:
+    - Game name
+    - Game URL
+    - Second Game URL
+    - Template Set
+    - Scheduled date and time
+5. Click **"Update Game"** to save changes
+    - OR click **"Cancel"** to discard changes
+
+> **Note**: You cannot change a scheduled game to an immediate game, or vice versa, after creation.
+
+### Deleting a Scheduled Game
+
+![Delete Scheduled Game](images/schedule-game.png)
+
+1. Find the scheduled game you want to delete
+2. Click the **Delete** icon (trash) button on the game card
+3. Confirm the deletion in the dialog
+4. The game will be permanently removed
+
+> **Warning**: Deleting a scheduled game cannot be undone. All game details will be lost.
+
+### Important Notes for Scheduled Games
+
+- **No Auto-Start**: Scheduled games do not start automatically. You must manually start them.
+- **Editing Limitations**: You can edit scheduled games, but cannot change them to immediate games.
+- **Start Anytime**: You can start a scheduled game before its scheduled time if needed.
+- **One Active Game**: Starting a scheduled game will make it your active game (you can only have one active game at a time).
+- **Template Sets**: Scheduled games can use template sets, which will be available when you start the game.
+
+---
 
 ## Dashboard Overview
 
@@ -255,7 +363,9 @@ The Dashboard is divided into three main panels:
 
 ### Right Panel: Message Controls
 
-- **System Messages**: Game notifications and updates
+- **Message Controls (modal)**: Open the in-game message feed and send admin broadcasts.
+- **Pinned message banner**: Pin one message to keep it highlighted for players/admins.
+- **Moderation**: Delete inappropriate or outdated messages (soft delete).
 
 ### Top Navigation
 
@@ -367,25 +477,59 @@ Once created, custom questions work just like template questions:
 
 ### Message Controls Panel Overview
 
-![Message Controls](images/message-controls.png)
+![Message Controls](images/message-home.png)
 
-The right panel allows you to reward players.
+The Message Controls panel lets you manage in-game messages for the current game:
 
-### Type of Messages
+- **Broadcast** an admin message to all players
+- **Pin/Unpin** a message (one pinned message at a time)
+- **Delete** messages (soft delete)
 
-#### Reward Messages
+> **Note**: Message actions are recorded in **Audit Logs** (e.g., broadcast, pinned/unpinned, deleted).
 
-- **Automatic**: Sent by the system
-- **Content**: Congratulatory messages and rewards for correct answers to top players
+### Opening Message Controls
 
-### Sending a Message
+1. Start or open an active game and go to the **Dashboard**
+2. In the top-right of the Dashboard, click the **envelope** icon
+3. A modal opens with the message feed and composer
 
-![Send Message](images/send-message.png)
+### Sending a Broadcast
 
-1. Click on one of the message reward option buttons
-2. Two buttons will appear: **"Send"** and **"Cancel"**
-3. Click **"Send"** to broadcast the message to all players
-4. Click **"Cancel"** to discard the message
+![Send Message](images/send-message-new.png)
+
+1. Type your message in **Broadcast message**
+2. Press **Send** (or press **Enter**)
+
+**Rules**
+
+- **Max length**: 500 characters
+- **Empty messages**: Not allowed
+
+### Pinning / Unpinning a Message
+
+1. Find a message in the feed
+2. Click the **pin** (📌) button to pin it
+3. Click the pin again to unpin
+
+**Pinned banner**
+
+- When a message is pinned, it appears in a **Pinned message** banner at the top
+- Pinning a different message automatically unpins the previous one
+
+### Deleting a Message
+
+1. Find a message in the feed
+2. Click the **trash** (🗑) button
+
+> **Note**: Deleted messages are removed from the feed (soft deleted in the database).
+
+### Closing the Modal
+
+You can close Message Controls by:
+
+- Clicking outside the modal (the dark backdrop)
+- Pressing **Escape**
+- Clicking the **×** close button
 
 ---
 
@@ -625,6 +769,217 @@ The Template Builder page displays:
 
 ---
 
+## Probability Manager
+
+### Overview
+
+![Probability Manager](images/probability-manager.png)
+
+The Probability Manager allows you to establish and manage predicted outcome probabilities for questions across your template sets. This feature helps track and adjust probability models for various scenarios based on historical data or expert analysis.
+
+### Accessing Probability Manager
+
+1. From the Home Page, click **"Probability Manager"** in the left sidebar
+2. You will see the Probability Manager page with all your question sets
+
+### Probability Manager Page Layout
+
+The Probability Manager displays:
+
+- **Header**: "Probability Models" title and description
+- **Sets Grid**: All your question sets displayed as cards
+- **Set Cards**: Each card shows:
+    - Set name
+    - Number of probability models in the set
+
+### Managing Probability Models for a Set
+
+![Set Card](images/set-card.png)
+
+#### Step 1: Select a Set
+
+1. On the Probability Manager page, click on a set card
+2. You will be taken to the **Probability Set Dashboard**
+
+#### Step 2: View Questions in the Set
+
+The Probability Set Dashboard displays:
+
+- **Set Name**: At the top of the page
+- **Questions List**: All questions in the selected set
+- **Probability Fields**: For each question, you can enter predicted outcome probabilities
+
+#### Step 3: Edit Probabilities
+
+For each question:
+
+1. Enter the probability percentage for each answer option
+2. Probabilities should represent a predicted likelihood of each outcome
+3. You can enter percentages (0-100) for each option
+4. Click **"Save"** to save probability adjustments
+
+#### Step 4: Return to Probability Manager
+
+1. Click the **"Back"** button to return to the main Probability Manager page
+2. Your probability model changes are saved
+
+### Important Notes for Probability Manager
+
+- The probabilities you enter are being displayed in the game page for each question template
+- ![Probability Display](images/probability-display.png)
+
+
+---
+
+## Legends Manager
+
+### Overview
+
+![Legends Manager](images/legends-manager.png)
+
+The Legends Manager allows you to convert ended games into "Legend" status games and add detailed timemarks to questions. This feature is useful for creating archived game recordings with timestamped questions for future reference and replay.
+
+### Accessing Legends Manager
+
+1. From the Home Page, click **"Legends Manager"** in the left sidebar
+2. You will see the Legends Manager page with all ended and legend games
+
+### Legends Manager Page Layout
+
+The Legends Manager displays:
+
+- **Header**: "Legends Manager" title
+- **Games List**: All your ended games and previously created legends
+- **Game Cards**: Each card shows:
+    - Game name
+    - Status (Ended or Legend)
+    - Quick action buttons
+
+### Converting a Game to Legend Status
+
+#### Step 1: Select an Ended Game
+
+1. On the Legends Manager page, find the game you want to convert
+2. Click the game card to select it
+3. The game's questions will load automatically
+
+#### Step 2: Add Timemarks to Questions
+
+![Add Timemark](images/legends-timemark.png)
+
+For each question in the game:
+
+1. Click the **Edit** button (pencil icon) next to the question
+2. Enter the **Timemark** - the timestamp in the video where this question occurs
+3. Format: MM:SS (minutes:seconds) or HH:MM:SS (hours:minutes:seconds)
+4. Click **"Save"** to save the timemark
+
+#### Step 3: Save Game Configuration
+
+1. After adding timemarks, click the **"Save"** button to save all changes
+2. A success message will confirm your changes are saved
+
+#### Step 4: Publish as Legend
+
+1. Click the **"Publish as Legend"** button to finalize the legend game
+2. The game status will change to "Legend"
+3. The game is now archived and timestamped for future reference
+
+### Legend Game Features
+
+**Timestamped Questions**: Each question in a legend game includes:
+- The timemark where it appears in the video
+- Original question and answer data
+- Player response information
+
+**Easy Retrieval**: Legend games can be quickly accessed and their timemarks used to jump to specific moments in the video
+
+**Historical Record**: Maintains a complete record of the game with video synchronization
+
+### Important Notes for Legends Manager
+
+- **Ended Games Only**: Only games with "Ended" status can be converted to Legend status
+- **Timemarks Required**: You should add timemarks to at least the key questions for best results
+- **Immutable After Publishing**: After publishing as Legend, timemarks cannot be edited (must edit before publishing)
+- **Video Synchronization**: Timemarks allow easy navigation to specific questions in the video
+- **Archive Purpose**: Legend games serve as permanent archives of your game sessions
+
+---
+
+## Players Lookup
+
+### Overview
+
+![Players Lookup](images/players-lookup.png)
+The Players Lookup feature allows you to search for individual players, view their statistics, and access detailed player profiles across all games. This is useful for player research, tracking performance trends, and awarding recognition.
+
+### Accessing Players Lookup
+
+1. From the Home Page, click **"Players"** in the left sidebar
+2. You will see the Players Lookup page
+
+### Players Lookup Page Layout
+
+The Players Lookup page displays:
+
+- **Search Section**: Search bar to find players by email or username
+- **Top Players Section**: Leaderboard of the top 10 players by score
+- **Player Profile Section**: Detailed information about a selected player
+
+### Searching for a Player
+
+#### Step 1: Enter Search Query
+
+1. In the **Search** field, enter:
+    - A player's **email address**, OR
+    - A player's **username**
+2. Click the **"Search"** button (or press Enter)
+
+#### Step 2: View Search Results
+
+If a player is found:
+
+- The player card will display with basic information
+- Click **"View Profile"** to see detailed statistics
+
+If no player is found:
+
+- You'll see a "No player found" message
+- Try a different email or username
+
+### Viewing Player Profile
+
+![Player Profile](images/player-profile.png)
+
+#### Profile Information Displayed
+
+Once you click "View Profile", the player profile section shows:
+
+- **Player Name/Email**: Player identification
+- **Account Status**: Active/Inactive status
+- **Total Points**: Cumulative points earned across all games
+- **Games Played**: Number of games participated in
+- **Accuracy Rate**: Percentage of correct predictions
+- **Average Points Per Game**: Average score per game session
+- **Badges Earned**: All badges awarded to the player
+- **Achievement List**: Specific achievements and milestones
+- **Recent Games**: List of recently participated games with scores
+
+
+### Top Players Leaderboard
+
+The **Top 10 Players** section shows:
+
+- **Player Rank**: Numbered ranking (1-10)
+- **Player Name/Email**: Player identification
+- **Total Score**: Combined points across all games
+- **Games Played**: Number of games participated in
+- **Accuracy**: Overall prediction accuracy percentage
+
+Click on any player in the top players list to view their detailed profile.
+
+---
+
 ## Game History
 
 ### Overview
@@ -674,6 +1029,148 @@ The Game Detail page shows comprehensive information about a specific game:
     - Player participation rates
 - **Questions List**: All questions asked during the game
 - **Player Activity**: Overview of player engagement
+---
+
+
+## Custom Hotkeys
+
+### Overview
+
+![Custom Hotkeys](images/custom-hotkeys.png)
+The Custom Hotkeys feature allows you to personalize keyboard shortcuts used during gameplay. You can customize all hotkeys to match your preferences, including template selection keys, answer selection keys, and action keys like closing play windows and sending answers.
+
+### Accessing Custom Hotkeys
+
+1. From the Home Page, click on the settings gear icon in the left sidebar
+2. Click the **"Edit Hotkeys"** button to open the Custom Hotkeys page
+
+### Custom Hotkeys Page Layout
+
+The Custom Hotkeys page displays:
+
+- **Header**: "Custom Hotkeys" title
+- **Hotkeys Configuration Section**: All customizable hotkeys organized by category
+- **Reset Button**: Restore all hotkeys to default settings
+
+### Categories of Customizable Hotkeys
+
+![Hotkeys Categories](images/hotkeys-categories.png)
+
+#### 1. Template Selection Hotkeys
+
+**Purpose**: Quickly select and activate question templates (1-10)
+
+**Default Keys**:
+- **1-9**: Select questions 1-9
+- **0**: Select question 10
+
+**Customization**:
+1. Click the edit button next to any template number
+2. Press the key you want to assign to that template
+3. The key is immediately recorded
+4. Repeat for other template numbers
+
+**Example**:
+- Change template 1 from "1" to "a"
+- Now pressing "a" will activate the first template
+
+#### 2. Answer Selection Hotkeys
+
+**Purpose**: Quickly select answer options (A, B, C, D, E, F)
+
+**Default Keys**:
+- **a**: Select answer option A
+- **b**: Select answer option B
+- **c**: Select answer option C
+- **d**: Select answer option D
+- **e**: Select answer option E
+- **f**: Select answer option F
+
+**Customization**:
+1. Click the edit button next to any answer option
+2. Press the key you want to assign to that answer
+3. The key is immediately recorded
+4. Repeat for other answer options
+
+**Example**:
+- Change answer A from "a" to "1"
+- Now pressing "1" will select the first answer option
+
+#### 3. Action Hotkeys
+
+**Purpose**: Perform common game control actions
+
+**Available Actions**:
+
+- **Close Play Window**: Close the active question window
+    - Default: **Space**
+    - Customization: Click edit and press your preferred key
+
+- **Send Answers**: Submit selected answers to all players
+    - Default: **Enter**
+    - Customization: Click edit and press your preferred key
+
+### Configuring Custom Hotkeys
+
+#### Step 1: Open Custom Hotkeys
+
+1. Navigate to the Custom Hotkeys page from the Home Page sidebar
+
+#### Step 2: Edit a Hotkey
+
+1. Find the hotkey you want to customize
+2. Click the **Edit** button (pencil icon) next to it
+3. The field will be active and ready for input
+4. Press any single key on your keyboard
+5. The key is automatically saved
+
+#### Step 3: Verify Your Changes
+
+1. The new key will immediately appear in the hotkey field
+2. Check for any **Duplicate Hotkey Warnings** at the top of the page
+3. If duplicates exist, you'll see a warning message
+
+#### Step 4: Reset to Defaults (Optional)
+
+1. If you want to restore all hotkeys to default, click the **"Reset to Default"** button
+2. Confirm the action in the dialog
+3. All hotkeys will be reverted to their original settings
+
+### Duplicate Hotkey Handling
+
+The Custom Hotkeys system checks for conflicts:
+
+**Duplicate Detection**:
+- If you assign a key that's already in use, a warning appears
+- Example: If both template 1 and answer A use "a", a warning shows
+
+**Resolution**:
+1. Review conflicting hotkeys shown in the warning
+2. Edit one of the conflicting hotkeys to a different key
+3. The warning will disappear when conflicts are resolved
+
+### Local Storage Persistence
+
+Custom hotkeys are saved automatically:
+
+- Stored in your browser's local storage
+- Persist across browser sessions
+- Specific to your device (not synced to cloud)
+
+**Reset Local Storage**:
+1. Clear your browser cache and cookies to reset hotkeys
+2. Or use the "Reset to Default" button on the Custom Hotkeys page
+
+### Important Notes for Custom Hotkeys
+
+- **Single Key Only**: Each hotkey must be a single key press (no combinations like Ctrl+A)
+- **Case Insensitive**: Letter keys work in uppercase or lowercase (a = A)
+- **Special Keys Supported**: Space, Enter, and other special keys are supported
+- **No Duplication**: Assign each key to only one action
+- **Immediate Effect**: Changes take effect immediately during gameplay
+- **Device-Specific**: Hotkeys are saved per device/browser
+- **Performance**: Using hotkeys can significantly speed up your workflow during games
+
 ---
 
 ## Audit Logs
@@ -738,6 +1235,39 @@ You can filter by:
 
 1. Click the **"Clear Filters"** button (X icon) to remove all active filters
 2. The table will show all audit logs again
+
+### Viewing Change Details
+
+![Audit Log Changes](images/audit-log-changes.png)
+
+1. Find the audit log entry you want to inspect
+2. In the "Changes" column, click **"View Changes"**
+3. A details section will expand showing:
+    - **Before**: The state before the change
+    - **After**: The state after the change
+4. Click again to collapse the details
+
+### Audit Log Table Columns
+
+| Column      | Description                                   |
+| ----------- | --------------------------------------------- |
+| Timestamp   | Date and time of the action                   |
+| Action      | Type of action (color-coded badge)            |
+| Entity Type | Category of the affected item                 |
+| Entity ID   | Unique identifier (clickable code)            |
+| Admin       | Admin email and name who performed the action |
+| Changes     | Expandable before/after values                |
+| More Info   | Reason or description of the action           |
+
+### Important Notes for Audit Logs
+
+- **Automatic Logging**: All administrative actions are automatically logged
+- **No Deletion**: Audit logs cannot be deleted or modified
+- **Filtering**: Use filters to find specific actions or track changes by admin
+- **Change Tracking**: UPDATE actions show before/after values when available
+- **Performance**: Large numbers of logs may take time to load
+- **Retention**: Audit logs are retained indefinitely for compliance and tracking
+
 ---
 
 ## Keyboard Hotkeys
@@ -815,6 +1345,44 @@ Keyboard hotkeys allow you to quickly perform common actions without using the m
 
 ---
 
+## Theme Toggle
+
+### Overview
+
+The Theme Toggle feature allows you to switch between light and dark modes.
+
+### Accessing Theme Toggle
+
+![Theme Toggle](images/theme-toggle.png)
+
+1. From the Home Page, click on the settings gear icon in the left sidebar
+2. Select a theme from the available options
+
+### Theme Toggle Page Layout
+
+The Theme Toggle page displays:
+
+- **Header**: "Theme Toggle" title
+- **Theme Toggle Section**: Light and dark mode toggle buttons
+
+### Understanding Theme Toggle
+
+The Theme Toggle feature allows you to switch between light and dark modes.
+
+- **Light Mode**: Default mode with a light background and dark text
+- **Dark Mode**: Dark mode with a dark background and light text
+- **Sepia Mode**: Sepia mode with a warm brownish background
+- **Midnight Mode**: Midnight mode with a dark blue background
+- **High Contrast Mode**: High contrast mode with a black background and white text
+
+### Important Notes for Theme Toggle
+
+- **Immediate Effect**: Changes take effect immediately during gameplay
+- **Device-Specific**: Themes are saved per device/browser
+- **Performance**: Using themes can significantly speed up your workflow during games
+
+---
+
 ## Ending a Game
 
 ### Before You End the Game
@@ -862,6 +1430,18 @@ After confirmation:
 **Q: Can I use Play by Play Admin on mobile devices?**  
 A: While the application may be accessible on mobile, it's optimized for desktop/laptop use. A tablet may work well for testing purposes.
 
+**Q: How do I create a new account?**  
+A: Click the "Register" link on the login page, fill in your email and password, and submit. After registration, you'll be redirected to the login page to sign in. See the [Registering a New Account](#registering-a-new-account) section for details.
+
+**Q: Can I schedule games for later?**  
+A: Yes! When creating a game, check the "Schedule for later" checkbox and select a future date and time. The game will appear in your Scheduled Games section. See the [Managing Scheduled Games](#managing-scheduled-games) section for details.
+
+**Q: Do scheduled games start automatically?**  
+A: No, scheduled games do not start automatically. You must manually click "Start Game Now" when you're ready to begin the game.
+
+**Q: Can I edit a scheduled game?**  
+A: Yes, you can edit scheduled games by clicking the Edit button on the game card. You can change the game name, URLs, template set, and scheduled time. However, you cannot convert a scheduled game to an immediate game or vice versa.
+
 ### Game Management
 
 **Q: How long can a game session last?**  
@@ -907,8 +1487,8 @@ A: Open the Set Dashboard for the set you want to rename, click the "Rename" but
 
 ## Document Information
 
-**Last Updated**: February 3, 2026
-**Version**: 4.0  
+**Last Updated**: December 2025  
+**Version**: 3.0  
 **For**: Play by Play Admin Users
 
 ### Version History
