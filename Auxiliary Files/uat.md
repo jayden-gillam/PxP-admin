@@ -192,6 +192,144 @@ As an administrator, I want to configure timemarks on questions so that players 
 
 ---
 
+## Feature 4: Template Builder
+
+### Description
+The Template Builder allows administrators to create, edit, and manage reusable question templates for use in live games.
+
+### User Story
+As an administrator, I want to create and manage reusable question templates so that I can use different templates for a live game.
+
+### Acceptance Tests
+
+#### UAT-4.1: View Template Builder page
+**Preconditions:**
+- User is logged in
+
+**Steps:**
+1. Navigate to the Template Builder page  
+
+**Expected Result:**
+- Template Builder page loads successfully  
+- Existing templates are displayed  
+- "+ Create Set" button is visible  
+
+#### UAT-4.2: Create a new template
+**Preconditions:**
+- User is on the Template Builder page  
+
+**Steps:**
+1. Click "+ New Set"
+2. Enter Set Name
+3. Click Next
+4. Enter question text  
+5. Enter answer options  
+6. Click "Create Question"  
+
+**Expected Result:**
+- Template is saved successfully  
+- Template appears in the list  
+
+#### UAT-4.3: Validation - missing required fields
+**Preconditions:**
+- User is on the Template Builder page  
+
+**Steps:**
+1. Click "+ New Set"  
+2. Leave required fields empty  
+3. Click "Next"  
+
+**Expected Result:** 
+- The User isn't moved on  
+- User remains on form  
+
+#### UAT-4.4: Edit an existing template 
+**Preconditions:**
+- At least one template exists  
+
+**Steps:** 
+1. Select a template  
+2. Click Edit next to a question
+3. Modify the text  
+4. Click "Save"  
+
+**Expected Result:** 
+- Changes are saved  
+- Updated template is displayed   
+
+#### UAT-4.5: Delete a template 
+**Preconditions:**
+- At least one template exists  
+
+**Steps:** 
+1. Select a template  
+2. Click "Delete Set"  
+3. Confirm deletion  
+
+**Expected Result:** 
+- Template is removed   
+
+#### UAT-4.6: Template availability in Game Controls 
+**Preconditions:** 
+- Templates exist  
+- Active game exists  
+
+**Steps:** 
+1. Navigate to Game Controls  
+
+**Expected Result:** 
+- Templates appear in Game Controls  
+- Templates can be selected to create questions
+
+#### UAT-4.7: Rename a template set
+**Preconditions:**
+- At least one template set exists  
+
+**Steps:**
+1. Select a template set  
+2. Click on the "rename" button
+3. Enter a new set name  
+4. Click "Save"
+
+**Expected Result:**
+- Set name is updated successfully  
+- New name is displayed in the Template Builder list  
+
+---
+
+#### UAT-4.8: Validation - rename set with empty name
+**Preconditions:**
+- At least one template set exists  
+
+**Steps:**
+1. Select a template set  
+2. Attempt to rename the set with an empty value  
+3. Click "Save"  
+
+**Expected Result:**
+- Rename is not allowed  
+- Set name remains unchanged  
+- User stays in edit mode or receives validation feedback  
+
+---
+
+#### UAT-4.9: Delete a question from a template set
+**Preconditions:**
+- At least one template set exists  
+- Template set contains at least one question  
+
+**Steps:**
+1. Select a template set  
+2. Locate a question  
+3. Click "Delete" next to the question  
+4. Confirm deletion  
+
+**Expected Result:**
+- Question is removed from the set  
+- Remaining questions are still displayed correctly  
+
+---
+
 ## Test Environment Requirements
 
 - Browser: Chrome, Firefox, Safari, or Edge (latest versions)
@@ -204,12 +342,14 @@ As an administrator, I want to configure timemarks on questions so that players 
 2. **Active game with templates** - For Game Controls testing
 3. **Ended game with questions** - For Legends Manager testing
 
+
 ---
 
 ## Sign-off
 
 | Tester | Date | Feature | Status | Notes |
 |--------|------|---------|--------|-------|
-|Liam    |3/17/025| User Authentication | T |  |
-|        |      | Game Controls |  |  |
-|Shristi |3/17/025| Legends Manager | T |  |
+|Liam    |3/17/2026| User Authentication | T |  |
+|        ||        |             |   |
+|Shristi |3/17/2026| Legends Manager | T |  |
+|Drew |3/17/2026| Template Builder | T |  |
