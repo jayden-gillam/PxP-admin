@@ -212,4 +212,4 @@ As an administrator, I want to configure timemarks on questions so that players 
 |--------|------|---------|--------|-------|
 |        |      | User Authentication |  |  |
 |        |      | Game Controls |  |  |
-|        |      | Legends Manager |  |  |
+|Shristi |3/17/025| Legends Manager | T |  |
