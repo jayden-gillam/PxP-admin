@@ -210,6 +210,6 @@ As an administrator, I want to configure timemarks on questions so that players 
 
 | Tester | Date | Feature | Status | Notes |
 |--------|------|---------|--------|-------|
-|        |      | User Authentication |  |  |
+|Liam    |3/17/025| User Authentication | T |  |
 |        |      | Game Controls |  |  |
 |Shristi |3/17/025| Legends Manager | T |  |
