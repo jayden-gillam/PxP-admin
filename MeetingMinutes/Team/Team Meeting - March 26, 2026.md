@@ -1,10 +1,15 @@
 # Team Meeting - March 26, 2026
 
 Date: March 26, 2026
+
 Meeting Start Time: 9:10 PM
+
 Meeting End Time: 9:43 PM
+
 Location/Medium: Zoom
+
 Present: Drew, Jayden, Shristi, Sinclair, and Liam
+
 Minute Recorder: Liam Grube
 
 ## Topics Discussed
