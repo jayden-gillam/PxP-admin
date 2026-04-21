@@ -176,6 +176,13 @@ The Home Page consists of three main sections:
     - Action buttons (Edit, Delete, Start Game Now)
 - **Empty State**: Shows when no games are scheduled
 
+#### Draft Games Section (New)
+
+![Draft Games Section](images/drafts-section.png)
+
+- **Draft games** are incomplete games saved to finish later.
+- Drafts appear alongside your other game lists on the Home page.
+
 ### Key Features on Home Page
 
 | Feature                | Description                            |
@@ -185,6 +192,7 @@ The Home Page consists of three main sections:
 | View Active Games      | See all games currently in progress    |
 | Manage Scheduled Games | Edit, start, or delete scheduled games |
 | Quick Dashboard Access | Jump directly to game dashboard        |
+| Draft Games            | Save incomplete games and edit later   |
 
 ---
 
@@ -265,6 +273,23 @@ The Create Game modal has the following fields:
 - A success message will appear: "Game scheduled successfully!"
 - The game appears in the **Scheduled Games** section on the Home Page
 - The game will remain scheduled until you start it
+
+### Saving a Game as a Draft (New)
+
+Drafts let you save an incomplete game and come back later.
+
+![Save Draft](images/save-draft.png)
+
+**How to use drafts**
+
+1. Open **+ Create Game**
+2. Fill in any information you have available
+3. Click **Save Draft** (button name may vary slightly depending on UI)
+
+**What happens next**
+
+- The game appears under **Drafts** on the Home page
+- You can open the draft later, edit it, and finish creating/scheduling it
 
 ### Important Notes
 
@@ -355,6 +380,9 @@ The Dashboard is divided into three main panels:
 ### Left Panel: App View
 
 - **Video Player**: Shows the current game video
+- **Player experience emulation (New)**: App View more closely mirrors the mobile gameplay experience so operators can preview what players are seeing.
+
+![App View Emulation](images/admin_view.jpg)
 
 ### Middle Panel: Game Controls
 
@@ -372,6 +400,21 @@ The Dashboard is divided into three main panels:
 - **Logo**: Return to home page
 - **Logout**: Exit the dashboard
 - **End Game Button**: Terminate the current game session
+
+### Game Notes Checklist (New)
+
+The dashboard includes a lightweight notes checklist to track tasks during a live game without leaving the dashboard.
+
+![Game Notes Button](images/gamenotes.jpg)
+
+**How it works**
+
+- Click the **Notes** button in the dashboard header (next to the message button) to open a modal
+- Add checklist items, check/uncheck, delete items
+- Double-click a task to edit text
+- Press **Escape** to close the modal
+
+![Game Notes Modal](images/gamenotes.jpg)
 
 ---
 
@@ -532,6 +575,24 @@ You can close Message Controls by:
 - Clicking the **×** close button
 
 ---
+
+## AI Assistant (New)
+
+### Overview
+
+The AI assistant is an optional in-app chat assistant intended to help operators during admin workflows.
+
+![AI Assistant](images/ai-assistant.png)
+
+### Using the AI Assistant
+
+1. Open the AI assistant panel in the UI
+2. Type your question or request
+3. Review the assistant’s response and apply it to your workflow as needed
+
+### Notes
+
+- Availability depends on environment configuration (it may be disabled in some deployments).
 
 ## Achievement Badges
 
@@ -758,6 +819,18 @@ The Template Builder page displays:
 2. Click the **"Edit"** button on the question card
 3. Modify the question text or options
 4. Click **"Update Question"** to save changes
+
+#### Reordering Questions (New)
+
+Questions in a set/template can be reordered using arrow controls.
+
+![Reorder Questions](images/template-reorder.png)
+
+1. In the set dashboard, find the question you want to move
+2. Click the **Up** or **Down** arrow on the question card
+3. The list updates to match the new order
+
+> **Note**: Games using the template should respect this ordering when showing questions in Game Controls.
 
 #### Deleting Questions
 
@@ -1006,6 +1079,33 @@ The Game History page displays:
     - Number of players
     - Status (ended)
 
+### Searching and Filtering (New)
+
+Game History supports client-side filtering (no additional reads).
+
+![History Search and Filters](images/search.jpg)
+
+- **Search by name**: Find games by game name
+- **Filter by player count**: small / medium / large
+- **Filter by date**: today / week / month
+- **Clear filters**: resets the list and results count
+
+### Exporting CSV / JSON (New)
+
+You can export Game History results for analysis.
+
+![History Export Actions](images/history-export.png)
+
+**Available exports**
+
+- Download **CSV**
+- Download **JSON**
+- Copy CSV (if available)
+
+**Export behavior**
+
+- Exports respect the same filters/search currently applied on screen
+
 ### Viewing Game Details
 
 1. Click on any game in the history list
@@ -1163,7 +1263,7 @@ Custom hotkeys are saved automatically:
 
 ### Important Notes for Custom Hotkeys
 
-- **Single Key Only**: Each hotkey must be a single key press (no combinations like Ctrl+A)
+- **Combination hotkeys supported (New)**: Hotkeys can use combinations (example: `Shift + 1`), depending on your configured mappings.
 - **Case Insensitive**: Letter keys work in uppercase or lowercase (a = A)
 - **Special Keys Supported**: Space, Enter, and other special keys are supported
 - **No Duplication**: Assign each key to only one action
@@ -1193,6 +1293,22 @@ The Audit Logs page displays:
 - **Header**: "Audit Logs" title and filter toggle button
 - **Filters Section**: (Expandable) Filter options for actions, entity types, and admins
 - **Audit Logs Table**: All logged actions displayed in a table format
+
+### Exporting CSV / JSON (New)
+
+Audit Logs can be exported for reporting and review.
+
+![Audit Export Actions](images/audit-export.png)
+
+**Available exports**
+
+- Download **CSV**
+- Download **JSON**
+- Copy CSV (if available)
+
+**Export behavior**
+
+- Exports respect the same filters currently applied on screen
 
 ### Understanding Audit Log Entries
 
@@ -1342,6 +1458,12 @@ Keyboard hotkeys allow you to quickly perform common actions without using the m
 | **0**     | Select question template (10th)    | Always                    |
 | **Space** | Close play window                  | When question is active   |
 | **Enter** | Send selected answers              | When answers are selected |
+
+### Combination Hotkeys (New)
+
+Some workflows support combination hotkeys (example: `Shift + 1`). Refer to the in-app hotkey cheatsheet/settings for the current mappings.
+
+![Hotkey Cheatsheet](images/hotkey-cheatsheet.png)
 
 ---
 

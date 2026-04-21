@@ -802,6 +802,16 @@ VITE_FIREBASE_APP_ID=your_app_id
 VITE_FIREBASE_MEASUREMENT_ID=your_measurement_id
 ```
 
+### AI Assistant configuration (New)
+
+If the AI assistant feature is enabled in your build, you may also need to add an AI provider key in `.env`.
+
+![AI Env Vars](images/ai-env-vars.png)
+
+Notes:
+- The exact variable name(s) are documented in the application repo’s `.env.example`.
+- The app should still run without AI enabled, depending on how the environment is configured.
+
 **Important Notes:**
 
 - Environment variables prefixed with `VITE_` are exposed to client-side code
@@ -1253,6 +1263,20 @@ npm run test:all
 ```
 
 Runs both unit and integration tests (requires emulator to be running).
+
+### Export feature verification (New)
+
+To manually verify CSV/JSON export behavior during development:
+
+1. Run the app (`npm run dev`)
+2. Navigate to:
+   - Game History
+   - Audit Logs
+   - A game detail page with a per-game leaderboard
+3. Apply any filters/search on the page
+4. Export CSV/JSON and confirm:
+   - Row counts match the on-screen data
+   - Export respects current filters/search
 
 ### Interpreting Test Results
 
