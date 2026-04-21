@@ -412,8 +412,6 @@ The Dashboard is divided into three main panels:
 
 The dashboard includes a lightweight notes checklist to track tasks during a live game without leaving the dashboard.
 
-![Game Notes Button](images/gamenotes.jpg)
-
 **How it works**
 
 - Click the **Notes** button in the dashboard header (next to the message button) to open a modal
