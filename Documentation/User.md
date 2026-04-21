@@ -1100,7 +1100,7 @@ Game History supports client-side filtering (no additional reads).
 
 You can export Game History results for analysis.
 
-![History Export Actions](images/history-export.png)
+![History Export Actions](images/export_files.jpg)
 
 **Available exports**
 
@@ -1304,7 +1304,7 @@ The Audit Logs page displays:
 
 Audit Logs can be exported for reporting and review.
 
-![Audit Export Actions](images/audit-export.png)
+![Audit Export Actions](images/export_files.jpg)
 
 **Available exports**
 
@@ -1561,7 +1561,7 @@ Export data as CSV/JSON (and copy CSV where available). Exports should respect t
 - **Details**:
   - Game History: [Exporting CSV / JSON](#exporting-csv--json-new)
   - Audit Logs: [Exporting CSV / JSON](#exporting-csv--json-new-1)
-- **Screenshot to add later**: `Documentation/images/history-export.png` / `Documentation/images/audit-export.png`
+- **Screenshot**: `Documentation/images/export_files.jpg`
 
 ## Ending a Game
 
