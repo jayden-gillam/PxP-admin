@@ -11,20 +11,26 @@
 7. [Dashboard Overview](#dashboard-overview)
 8. [Game Controls](#game-controls)
 9. [Messaging](#messaging)
-10. [Achievement Badges](#achievement-badges)
-11. [Template Builder](#template-builder)
-12. [Probability Manager](#probability-manager)
-13. [Legends Manager](#legends-manager)
-14. [Players Lookup](#players-lookup)
-15. [Game History](#game-history)
-16. [Custom Hotkeys](#custom-hotkeys)
-17. [Audit Logs](#audit-logs)
-18. [Keyboard Hotkeys](#keyboard-hotkeys)
-19. [Theme Toggle](#theme-toggle)
-19. [Ending a Game](#ending-a-game)
-20. [FAQ](#faq)
-
----
+10. [AI assistant](#ai-assistant)
+11. [Achievement Badges](#achievement-badges)
+12. [Template Builder](#template-builder)
+13. [Probability Manager](#probability-manager)
+14. [Legends Manager](#legends-manager)
+15. [Players Lookup](#players-lookup)
+16. [Game History](#game-history)
+17. [Custom Hotkeys](#custom-hotkeys)
+18. [Audit Logs](#audit-logs)
+19. [Keyboard Hotkeys](#keyboard-hotkeys)
+20. [Theme Toggle](#theme-toggle)
+21. [Draft system](#draft-system)
+22. [AppView emulation](#appview-emulation)
+23. [Live dashboard: game notes checklist](#live-dashboard-game-notes-checklist)
+24. [Game History: search & filter](#game-history-search--filter)
+25. [Question reordering](#question-reordering)
+26. [Hotkey combinations](#hotkey-combinations)
+27. [CSV / JSON export](#csv--json-export)
+28. [Ending a Game](#ending-a-game)
+29. [FAQ](#faq)
 
 ## Getting Started
 
@@ -576,7 +582,7 @@ You can close Message Controls by:
 
 ---
 
-## AI Assistant (New)
+## AI assistant
 
 ### Overview
 
@@ -1504,6 +1510,58 @@ The Theme Toggle feature allows you to switch between light and dark modes.
 - **Performance**: Using themes can significantly speed up your workflow during games
 
 ---
+
+## Draft system
+
+Save an incomplete game as a **draft**, then come back later to edit it and finish creating/scheduling it.
+
+- **Where to use**: Home → Drafts section; Create Game modal → Save Draft
+- **Details**: See [Saving a Game as a Draft](#saving-a-game-as-a-draft-new)
+- **Screenshot to add later**: `Documentation/images/drafts-section.png` / `Documentation/images/save-draft.png`
+
+## AppView emulation
+
+AppView better emulates the player mobile gameplay experience in the admin dashboard.
+
+- **Details**: See [Left Panel: App View](#left-panel-app-view)
+- **Screenshot**: `Documentation/images/admin_view.jpg`
+
+## Live dashboard: game notes checklist
+
+Keep a checklist during a live game (modal from the dashboard header).
+
+- **Details**: See [Game Notes Checklist](#game-notes-checklist-new)
+- **Screenshot**: `Documentation/images/gamenotes.jpg`
+
+## Game History: search & filter
+
+Search games by name and filter results (client-side).
+
+- **Details**: See [Searching and Filtering](#searching-and-filtering-new)
+- **Screenshot**: `Documentation/images/search.jpg`
+
+## Question reordering
+
+Reorder questions in a template/set using up/down arrow controls.
+
+- **Details**: See [Reordering Questions](#reordering-questions-new)
+- **Screenshot to add later**: `Documentation/images/template-reorder.png`
+
+## Hotkey combinations
+
+Hotkeys support combinations (example: `Shift + 1`), depending on your configured mappings.
+
+- **Details**: See [Keyboard Hotkeys](#keyboard-hotkeys) and [Custom Hotkeys](#custom-hotkeys)
+- **Screenshot to add later**: `Documentation/images/hotkey-cheatsheet.png`
+
+## CSV / JSON export
+
+Export data as CSV/JSON (and copy CSV where available). Exports should respect the same filters/search applied on screen.
+
+- **Details**:
+  - Game History: [Exporting CSV / JSON](#exporting-csv--json-new)
+  - Audit Logs: [Exporting CSV / JSON](#exporting-csv--json-new-1)
+- **Screenshot to add later**: `Documentation/images/history-export.png` / `Documentation/images/audit-export.png`
 
 ## Ending a Game
 
