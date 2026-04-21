@@ -11,6 +11,7 @@
 7. [Dashboard Overview](#dashboard-overview)
 8. [Game Controls](#game-controls)
 9. [Messaging](#messaging)
+    - [Player chat moderation (profanity + AI flags)](#player-chat-moderation-profanity--ai-flags)
 10. [AI assistant](#ai-assistant)
 11. [Achievement Badges](#achievement-badges)
 12. [Template Builder](#template-builder)
@@ -534,6 +535,27 @@ The Message Controls panel lets you manage in-game messages for the current game
 - **Delete** messages (soft delete)
 
 > **Note**: Message actions are recorded in **Audit Logs** (e.g., broadcast, pinned/unpinned, deleted).
+
+### Player chat moderation (profanity + AI flags)
+
+PR #69 adds a dedicated moderation workflow inside Message Controls to help operators review player chat messages that may be inappropriate.
+
+![Player Chat Moderation](images/player-chat-moderation.png)
+
+**How to use**
+
+1. Open **Message Controls**
+2. Switch to the **Moderation** view/tab
+3. Review messages that are:
+   - flagged by **profanity filtering**, and/or
+   - flagged by **AI moderation**
+4. Take action based on your operating procedure (for example: remove/hide, keep, or mark as reviewed—exact actions depend on the deployment/UI)
+
+**Expected behavior**
+
+- Broadcast view focuses on operator broadcast messages
+- Moderation view focuses on player chat messages that need review
+- Profanity filtering and AI moderation flags help prioritize what needs attention
 
 ### Opening Message Controls
 
