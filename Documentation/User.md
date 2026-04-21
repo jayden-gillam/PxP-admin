@@ -186,7 +186,7 @@ The Home Page consists of three main sections:
 
 #### Draft Games Section (New)
 
-![Draft Games Section](images/drafts-section.png)
+![Draft Games Section](images/draft.jpg)
 
 - **Draft games** are incomplete games saved to finish later.
 - Drafts appear alongside your other game lists on the Home page.
@@ -286,7 +286,7 @@ The Create Game modal has the following fields:
 
 Drafts let you save an incomplete game and come back later.
 
-![Save Draft](images/save-draft.png)
+![Save Draft](images/save_as_draft.jpg)
 
 **How to use drafts**
 
@@ -528,11 +528,18 @@ Once created, custom questions work just like template questions:
 
 ![Message Controls](images/message-home.png)
 
-The Message Controls panel lets you manage in-game messages for the current game:
+Message Controls is the place to manage **operator broadcasts** and **player chat moderation** for the current game. It typically includes tabs/views for **Broadcast** and **Moderation**.
 
-- **Broadcast** an admin message to all players
-- **Pin/Unpin** a message (one pinned message at a time)
-- **Delete** messages (soft delete)
+**Broadcast**
+
+- Send an admin message to all players
+- Pin/unpin a message (one pinned message at a time)
+- Delete messages (soft delete)
+
+**Moderation (AI + profanity)**
+
+- Review player chat messages that are flagged by profanity filtering and/or AI moderation
+- Take action per your operating procedure (exact actions depend on deployment/UI)
 
 > **Note**: Message actions are recorded in **Audit Logs** (e.g., broadcast, pinned/unpinned, deleted).
 
