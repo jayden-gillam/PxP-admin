@@ -538,7 +538,7 @@ The Message Controls panel lets you manage in-game messages for the current game
 
 ### Player chat moderation (profanity + AI flags)
 
-PR #69 adds a dedicated moderation workflow inside Message Controls to help operators review player chat messages that may be inappropriate.
+A dedicated moderation workflow inside Message Controls helps operators review player chat messages that may be inappropriate.
 
 ![Player Chat Moderation](images/player-chat-moderation.png)
 
