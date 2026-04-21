@@ -185,7 +185,16 @@ The Home Page consists of three main sections:
 
 #### Draft Games Section (New)
 
-![Draft Games Section](images/draft.jpg)
+<table>
+  <tr>
+    <td>
+      <img src="images/draft.jpg" alt="Draft Games Section" width="360" />
+    </td>
+    <td>
+      <img src="images/save_as_draft.jpg" alt="Save as Draft" width="360" />
+    </td>
+  </tr>
+</table>
 
 - **Draft games** are incomplete games saved to finish later.
 - Drafts appear alongside your other game lists on the Home page.
@@ -284,8 +293,6 @@ The Create Game modal has the following fields:
 ### Saving a Game as a Draft (New)
 
 Drafts let you save an incomplete game and come back later.
-
-![Save Draft](images/save_as_draft.jpg)
 
 **How to use drafts**
 
@@ -524,8 +531,6 @@ Once created, custom questions work just like template questions:
 ## Messaging
 
 ### Message Controls Panel Overview
-
-![Message Controls](images/message-home.png)
 
 Message Controls is the place to manage **operator broadcasts** and **player chat moderation** for the current game. It typically includes tabs/views for **Broadcast** and **Moderation**.
 
