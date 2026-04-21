@@ -381,7 +381,7 @@ Scheduled games allow you to prepare games in advance and start them at a specif
 
 ### Main Dashboard Layout
 
-![Dashboard Layout](images/dashboard.png)
+![Dashboard Layout](images/main_dashboard.jpg)
 
 The Dashboard is divided into three main panels:
 
