@@ -829,7 +829,7 @@ The Template Builder page displays:
 
 Questions in a set/template can be reordered using arrow controls.
 
-![Reorder Questions](images/template-reorder.png)
+![Reorder Questions](images/question_reordering.jpg)
 
 1. In the set dashboard, find the question you want to move
 2. Click the **Up** or **Down** arrow on the question card
@@ -1468,7 +1468,7 @@ Keyboard hotkeys allow you to quickly perform common actions without using the m
 
 Some workflows support combination hotkeys (example: `Shift + 1`). Refer to the in-app hotkey cheatsheet/settings for the current mappings.
 
-![Hotkey Cheatsheet](images/hotkey-cheatsheet.png)
+![Hotkey Cheatsheet](images/hotkey_combination.jpg)
 
 ---
 
