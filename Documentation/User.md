@@ -1021,7 +1021,7 @@ For each question:
 ### Important Notes for Probability Manager
 
 - The probabilities you enter are being displayed in the game page for each question template
-- ![Probability Display](images/probability-display.png)
+- ![App view showing probabilities on the game page](images/admin_view.jpg)
 
 
 ---
@@ -1105,8 +1105,9 @@ For each question in the game:
 
 ### Overview
 
-![Players Lookup](images/players-lookup.png)
 The Players Lookup feature allows you to search for individual players, view their statistics, and access detailed player profiles across all games. This is useful for player research, tracking performance trends, and awarding recognition.
+
+![Player Profile](images/player-profile.png)
 
 ### Accessing Players Lookup
 
@@ -1143,8 +1144,6 @@ If no player is found:
 - Try a different email or username
 
 ### Viewing Player Profile
-
-![Player Profile](images/player-profile.png)
 
 #### Profile Information Displayed
 
