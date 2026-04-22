@@ -21,9 +21,16 @@
 ### Key Features
 
 - **Real-time Game Management**: Create and manage live game sessions
+- **Draft Games**: Save incomplete game setup and resume later
 - **Question System**: Predefined templates and on-the-fly custom questions
+- **Template Builder**: Create/manage reusable question sets (including ordering)
 - **Achievement Badges**: Create and award badges to players
-- **Keyboard Hotkeys**: Fast workflow with keyboard shortcuts
+- **Keyboard Hotkeys**: Fast workflow with keyboard shortcuts (including combination hotkeys)
+- **Game History + Reporting**: Search/filter past games and export CSV/JSON snapshots
+- **Audit Logs + Export**: Review admin actions and export CSV/JSON snapshots
+- **Messaging + Moderation**: Operator broadcasts plus player chat moderation workflows (profanity/AI flags, depending on configuration)
+- **AI Assistant (optional)**: In-app assistant for operator workflows (provider-dependent)
+- **AppView Emulation**: Preview player-facing experience inside the admin dashboard
 - **Firebase Integration**: Authentication and real-time database
 - **Type-Safe Development**: Full TypeScript support
 - **Observer Pattern Architecture**: Decoupled event-driven system for game events
@@ -31,6 +38,67 @@
 ---
 
 ## System Architecture Overview
+
+### Module map (high level)
+
+This is a concise map of the major **runtime modules** in the admin app and how data flows between them. It is meant to complement the more detailed ASCII diagram below.
+
+```mermaid
+flowchart TB
+  subgraph UI["Presentation (React + Vite)"]
+    Home["Home / Games list (live, scheduled, drafts)"]
+    Dash["Dashboard (AppView + GameControls + utilities)"]
+    TB["Template Builder"]
+    PM["Probability Manager"]
+    Hist["Game History (+ search/filter + export UI)"]
+    Audit["Audit Logs (+ filters + export UI)"]
+    Msg["Message Controls (broadcast + moderation tabs)"]
+    AIUI["AI Assistant UI (optional)"]
+  end
+
+  subgraph AppLayer["Application layer (hooks + services)"]
+    GameSvc["Game services (create/start/end, drafts)"]
+    QSvc["Question/template services"]
+    MsgSvc["Messaging + moderation services"]
+    ExportSvc["Export services (CSV/JSON builders)"]
+    AISvc["AI client + assistant services (optional)"]
+    AuditSvc["Audit logging services"]
+    Events["Game event bus (observer pattern)"]
+  end
+
+  subgraph Data["Data access"]
+    Crud["Firebase CRUD modules"]
+  end
+
+  subgraph Backend["Firebase"]
+    FS["Firestore"]
+    Auth["Auth"]
+  end
+
+  Home --> GameSvc
+  Dash --> GameSvc
+  Dash --> QSvc
+  Dash --> MsgSvc
+  TB --> QSvc
+  PM --> QSvc
+  Hist --> ExportSvc
+  Audit --> ExportSvc
+  Msg --> MsgSvc
+  AIUI --> AISvc
+
+  GameSvc --> Crud
+  QSvc --> Crud
+  MsgSvc --> Crud
+  ExportSvc --> Crud
+  AISvc --> Crud
+  AuditSvc --> Crud
+
+  Events --> GameSvc
+  Events --> QSvc
+
+  Crud --> FS
+  Crud --> Auth
+```
 
 ### High-Level Architecture Diagram
 
@@ -116,7 +184,7 @@
 
 #### 1. **UI Layer (React Components)**
 - Entry point for all user interactions
-- Components for game management, question templates, badges, player lookup
+- Components for game management, drafts, dashboard (AppView), question templates, badges, player lookup, game history, audit logs, messaging/moderation, and optional AI assistant UI
 - Communicates with services via custom hooks
 - Updates state reactively
 
@@ -128,7 +196,7 @@
 #### 3. **Service Layer (Business Logic)**
 - Core application logic encapsulated in service classes
 - Services implement business rules independently
-- Examples: GameService, QuestionService, BadgeService, UserStatsService
+- Examples: GameService, Question/Template services, BadgeService, UserStatsService, messaging/moderation services, export services, optional AI assistant services
 - Services coordinate with CRUD layer and event system
 
 #### 4. **Event System (Observer Pattern - Core)**
@@ -140,6 +208,7 @@
 #### 5. **CRUD Layer (Data Operations)**
 - Direct Firebase database operations
 - Each entity has dedicated CRUD file (gamesCrud, questionsCrud, etc.)
+- May include additional collections/modules for messaging/moderation depending on feature rollout
 - Handles read, create, update, delete operations
 - Tested via integration tests against Firebase Emulator
 
@@ -805,8 +874,6 @@ VITE_FIREBASE_MEASUREMENT_ID=your_measurement_id
 ### AI Assistant configuration
 
 If the AI assistant feature is enabled in your build, you may also need to add an AI provider key in `.env`.
-
-![AI Env Vars](images/ai-env-vars.png)
 
 Notes:
 - The exact variable name(s) are documented in the application repo’s `.env.example`.

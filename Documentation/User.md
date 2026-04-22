@@ -686,8 +686,6 @@ You can close Message Controls by:
 
 The AI assistant is an optional in-app chat assistant intended to help operators during admin workflows.
 
-![AI Assistant](images/ai_manager.jpg)
-
 ### Using the AI Assistant
 
 1. Open the AI assistant panel in the UI
