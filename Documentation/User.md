@@ -704,6 +704,8 @@ The AI assistant is an optional in-app chat assistant intended to help operators
 
 The Achievement Badge system allows you to create, manage, and award badges to players based on their performance. Badges can be awarded automatically when players meet certain criteria, or manually by you as the game master.
 
+![Achievement Badges](images/achievement_badges.jpg)
+
 ### Creating a Badge
 
 #### Step 1: Open Create Badge Modal
@@ -966,7 +968,7 @@ The Template Builder page displays:
 
 ### Overview
 
-![Probability Manager](images/probability-manager.png)
+![Probability Manager](images/Probability_manager.jpg)
 
 The Probability Manager allows you to establish and manage predicted outcome probabilities for questions across your template sets. This feature helps track and adjust probability models for various scenarios based on historical data or expert analysis.
 
@@ -987,7 +989,7 @@ The Probability Manager displays:
 
 ### Managing Probability Models for a Set
 
-![Set Card](images/set-card.png)
+![Managing probability models for a set](images/Probability_manager.jpg)
 
 #### Step 1: Select a Set
 
