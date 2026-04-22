@@ -830,7 +830,7 @@ The Template Builder allows you to create and manage question sets (templates) t
 
 ### Accessing Template Builder
 
-![Template Builder Navigation](images/home-page.png)
+![Template Builder Navigation](images/home_page.jpg)
 
 1. From the Home Page, click **"Template Builder"** in the left sidebar
 2. You will see the Template Builder page with all your question sets
