@@ -18,18 +18,18 @@
 14. [Legends Manager](#legends-manager)
 15. [Players Lookup](#players-lookup)
 16. [Game History](#game-history)
-    - [Search & filter](#searching-and-filtering-new)
-    - [Export CSV / JSON](#exporting-csv--json-new)
+    - [Search & filter](#searching-and-filtering)
+    - [Export CSV / JSON](#exporting-csv--json-game-history)
 17. [Custom Hotkeys](#custom-hotkeys)
 18. [Audit Logs](#audit-logs)
-    - [Export CSV / JSON](#exporting-csv--json-new-1)
+    - [Export CSV / JSON](#exporting-csv--json-audit-logs)
 19. [Keyboard Hotkeys](#keyboard-hotkeys)
-    - [Combination hotkeys](#combination-hotkeys-new)
+    - [Combination hotkeys](#combination-hotkeys)
 20. [Theme Toggle](#theme-toggle)
-21. [Draft system](#saving-a-game-as-a-draft-new)
+21. [Draft system](#saving-a-game-as-a-draft)
 22. [AppView emulation](#left-panel-app-view)
-23. [Live dashboard: game notes checklist](#game-notes-checklist-new)
-24. [Question reordering](#reordering-questions-new)
+23. [Live dashboard: game notes checklist](#game-notes-checklist)
+24. [Question reordering](#reordering-questions)
 25. [Ending a Game](#ending-a-game)
 26. [FAQ](#faq)
 
@@ -185,7 +185,7 @@ The Home Page consists of three main sections:
 
 #### Draft games
 
-<a id="draft-games-section-new"></a>
+<a id="draft-games-section"></a>
 
 **What it is**
 
@@ -306,7 +306,7 @@ The Create Game modal has the following fields:
 
 ### Saving a game as a draft
 
-<a id="saving-a-game-as-a-draft-new"></a>
+<a id="saving-a-game-as-a-draft"></a>
 
 **What it is**
 
@@ -448,7 +448,7 @@ The Dashboard is divided into three main panels:
 
 ### Game notes checklist
 
-<a id="game-notes-checklist-new"></a>
+<a id="game-notes-checklist"></a>
 
 **What it is**
 
@@ -686,7 +686,7 @@ You can close Message Controls by:
 
 The AI assistant is an optional in-app chat assistant intended to help operators during admin workflows.
 
-![AI Assistant](images/ai-assistant.png)
+![AI Assistant](images/ai_manager.jpg)
 
 ### Using the AI Assistant
 
@@ -926,7 +926,7 @@ The Template Builder page displays:
 
 #### Reordering questions
 
-<a id="reordering-questions-new"></a>
+<a id="reordering-questions"></a>
 
 **What it is**
 
@@ -1201,7 +1201,7 @@ The Game History page displays:
 
 ### Searching and filtering
 
-<a id="searching-and-filtering-new"></a>
+<a id="searching-and-filtering"></a>
 
 **What it is**
 
@@ -1228,7 +1228,7 @@ The Game History page displays:
 
 ### Exporting CSV / JSON
 
-<a id="exporting-csv--json-new"></a>
+<a id="exporting-csv--json-game-history"></a>
 
 **What it is**
 
@@ -1443,7 +1443,7 @@ The Audit Logs page displays:
 
 ### Exporting CSV / JSON
 
-<a id="exporting-csv--json-new-1"></a>
+<a id="exporting-csv--json-audit-logs"></a>
 
 **What it is**
 
@@ -1619,7 +1619,7 @@ Keyboard hotkeys allow you to quickly perform common actions without using the m
 
 ### Combination hotkeys
 
-<a id="combination-hotkeys-new"></a>
+<a id="combination-hotkeys"></a>
 
 **What it is**
 

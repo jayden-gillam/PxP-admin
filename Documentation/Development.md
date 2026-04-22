@@ -802,7 +802,7 @@ VITE_FIREBASE_APP_ID=your_app_id
 VITE_FIREBASE_MEASUREMENT_ID=your_measurement_id
 ```
 
-### AI Assistant configuration (New)
+### AI Assistant configuration
 
 If the AI assistant feature is enabled in your build, you may also need to add an AI provider key in `.env`.
 
@@ -1264,7 +1264,7 @@ npm run test:all
 
 Runs both unit and integration tests (requires emulator to be running).
 
-### Export feature verification (New)
+### Export feature verification
 
 To manually verify CSV/JSON export behavior during development:
 
