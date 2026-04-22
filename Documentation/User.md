@@ -152,7 +152,7 @@ The registration form requires the following information:
 
 ### Page Layout
 
-![Home Page Layout](images/new-home.png)
+![Home Page Layout](images/home_page.jpg)
 
 The Home Page consists of three main sections:
 
@@ -183,21 +183,35 @@ The Home Page consists of three main sections:
     - Action buttons (Edit, Delete, Start Game Now)
 - **Empty State**: Shows when no games are scheduled
 
-#### Draft Games Section (New)
+#### Draft games
+
+<a id="draft-games-section-new"></a>
+
+**What it is**
+
+- **Drafts** are incomplete games you can save and finish later.
+
+**Where to find it**
+
+- **Home** → **Drafts** (draft cards are listed on the home screen)
+
+**Screenshots**
 
 <table>
   <tr>
     <td>
-      <img src="images/draft.jpg" alt="Draft Games Section" width="360" />
+      <img src="images/draft.jpg" alt="Draft games list" width="360" />
     </td>
     <td>
-      <img src="images/save_as_draft.jpg" alt="Save as Draft" width="360" />
+      <img src="images/save_as_draft.jpg" alt="Create Game: Save as Draft" width="360" />
     </td>
   </tr>
 </table>
 
-- **Draft games** are incomplete games saved to finish later.
-- Drafts appear alongside your other game lists on the Home page.
+**What you should see**
+
+- Drafts appear in the **Drafts** section
+- A draft can be **continued** (or **deleted**), depending on the UI
 
 ### Key Features on Home Page
 
@@ -290,20 +304,24 @@ The Create Game modal has the following fields:
 - The game appears in the **Scheduled Games** section on the Home Page
 - The game will remain scheduled until you start it
 
-### Saving a Game as a Draft (New)
+### Saving a game as a draft
 
-Drafts let you save an incomplete game and come back later.
+<a id="saving-a-game-as-a-draft-new"></a>
 
-**How to use drafts**
+**What it is**
 
-1. Open **+ Create Game**
-2. Fill in any information you have available
-3. Click **Save Draft** (button name may vary slightly depending on UI)
+- A way to save progress while setting up a game, without creating/scheduling the full session yet.
 
-**What happens next**
+**How to use (create flow)**
 
-- The game appears under **Drafts** on the Home page
-- You can open the draft later, edit it, and finish creating/scheduling it
+1. On **Home**, click **+ Create Game**
+2. Fill in whatever you have available
+3. Click **Save as Draft**
+
+**What you should see**
+
+- The draft shows up under **Home → Drafts**
+- You can return later, continue editing, and finish the setup when ready
 
 ### Important Notes
 
@@ -394,9 +412,22 @@ The Dashboard is divided into three main panels:
 ### Left Panel: App View
 
 - **Video Player**: Shows the current game video
-- **Player experience emulation (New)**: App View more closely mirrors the mobile gameplay experience so operators can preview what players are seeing.
 
-![App View Emulation](images/admin_view.jpg)
+**What it is (AppView emulation)**
+
+- A closer preview of the **player’s mobile experience** for the current game, directly inside the admin dashboard.
+
+**Where to find it**
+
+- **Dashboard** → **App View** (left column)
+
+**Screenshot**
+
+![App View](images/admin_view.jpg)
+
+**What you should see**
+
+- The on-screen experience should broadly match the player-facing app layout for the current game state (video, messaging entry points, etc., depending on configuration)
 
 ### Middle Panel: Game Controls
 
@@ -415,18 +446,33 @@ The Dashboard is divided into three main panels:
 - **Logout**: Exit the dashboard
 - **End Game Button**: Terminate the current game session
 
-### Game Notes Checklist (New)
+### Game notes checklist
 
-The dashboard includes a lightweight notes checklist to track tasks during a live game without leaving the dashboard.
+<a id="game-notes-checklist-new"></a>
 
-**How it works**
+**What it is**
 
-- Click the **Notes** button in the dashboard header (next to the message button) to open a modal
-- Add checklist items, check/uncheck, delete items
-- Double-click a task to edit text
+- A lightweight **checklist** for tracking tasks/notes while you’re live on the dashboard (without opening a separate app).
+
+**Where to find it**
+
+- **Dashboard** → header → **Notes** (next to the message icon)
+
+**How to use**
+
+- Click **Notes** to open the checklist
+- Add tasks, check/uncheck, delete
+- **Double-click** a task to edit the text
 - Press **Escape** to close the modal
 
-![Game Notes Modal](images/gamenotes.jpg)
+**Screenshot**
+
+![Game Notes](images/gamenotes.jpg)
+
+**What you should see**
+
+- A **completion counter** (for example, “3/5 completed”)
+- Tasks that persist for the current session (and across reloads, depending on your environment)
 
 ---
 
@@ -532,7 +578,20 @@ Once created, custom questions work just like template questions:
 
 ### Message Controls Panel Overview
 
-Message Controls is the place to manage **operator broadcasts** and **player chat moderation** for the current game. It typically includes tabs/views for **Broadcast** and **Moderation**.
+**What it is**
+
+- A single place to handle **in-game communication**: operator **broadcasts** to players, and **player chat moderation** (with profanity + AI flags, depending on configuration).
+
+**Where to find it**
+
+1. Open an active game and go to the **Dashboard**
+2. In the top-right, click the **envelope** icon
+3. The **Message Controls** modal opens
+
+**How it is organized (typical UI)**
+
+- **Broadcast** tab/view: your operator message feed and composer
+- **Moderation** tab/view: player chat messages that need review (flags)
 
 **Broadcast**
 
@@ -549,30 +608,37 @@ Message Controls is the place to manage **operator broadcasts** and **player cha
 
 ### Player chat moderation (profanity + AI flags)
 
-A dedicated moderation workflow inside Message Controls helps operators review player chat messages that may be inappropriate.
+<a id="player-chat-moderation-profanity--ai-flags"></a>
 
-![Player Chat Moderation](images/player-chat-moderation.png)
+**What it is**
+
+- A moderation view inside **Message Controls** to review **player chat** and prioritize messages that may be inappropriate (profanity + AI flags, depending on configuration).
+
+**Where to find it**
+
+- **Dashboard** → open **Message Controls** (envelope) → **Moderation** tab/view
 
 **How to use**
 
-1. Open **Message Controls**
-2. Switch to the **Moderation** view/tab
-3. Review messages that are:
-   - flagged by **profanity filtering**, and/or
-   - flagged by **AI moderation**
-4. Take action based on your operating procedure (for example: remove/hide, keep, or mark as reviewed—exact actions depend on the deployment/UI)
+1. With Message Controls open, switch to the **Moderation** tab/view
+2. Review messages, prioritizing any **flagged** items
+3. Take the appropriate moderation action (exact buttons depend on deployment/UI)
+4. If needed, return to the **Broadcast** tab to continue normal operator messaging
 
-**Expected behavior**
+**Screenshot**
 
-- Broadcast view focuses on operator broadcast messages
-- Moderation view focuses on player chat messages that need review
-- Profanity filtering and AI moderation flags help prioritize what needs attention
+![Player Chat Moderation](images/player-chat-moderation.png)
 
-### Opening Message Controls
+**What you should see**
 
-1. Start or open an active game and go to the **Dashboard**
-2. In the top-right of the Dashboard, click the **envelope** icon
-3. A modal opens with the message feed and composer
+- A clearer split between:
+  - **operator broadcasts** (Broadcast), and
+  - **player chat review** (Moderation)
+- Flagging helps you focus on the highest-risk messages first
+
+**Notes**
+
+- Behavior depends on environment configuration (AI may be optional/disabled in some deployments)
 
 ### Sending a Broadcast
 
@@ -858,15 +924,31 @@ The Template Builder page displays:
 3. Modify the question text or options
 4. Click **"Update Question"** to save changes
 
-#### Reordering Questions (New)
+#### Reordering questions
 
-Questions in a set/template can be reordered using arrow controls.
+<a id="reordering-questions-new"></a>
+
+**What it is**
+
+- Lets you change the order that questions appear within a template/set.
+
+**Where to find it**
+
+- **Home** → **Template Builder** → open a set → **Set Dashboard** (question list)
+
+**How to use**
+
+1. Find the question you want to move
+2. Click **Up** or **Down** on the question card
+3. Confirm the list order updates as expected
+
+**Screenshot**
 
 ![Reorder Questions](images/question_reordering.jpg)
 
-1. In the set dashboard, find the question you want to move
-2. Click the **Up** or **Down** arrow on the question card
-3. The list updates to match the new order
+**What you should see**
+
+- The question list reflects the new order immediately
 
 > **Note**: Games using the template should respect this ordering when showing questions in Game Controls.
 
@@ -1117,32 +1199,59 @@ The Game History page displays:
     - Number of players
     - Status (ended)
 
-### Searching and Filtering (New)
+### Searching and filtering
 
-Game History supports client-side filtering (no additional reads).
+<a id="searching-and-filtering-new"></a>
+
+**What it is**
+
+- Client-side **search + filters** on the Game History list (no extra reads for filtering).
+
+**Where to find it**
+
+- **Home** → **History** → use the search + filter controls at the top of the list
+
+**How to use**
+
+- **Search by name**: find games by game name
+- **Filter by player count**: small / medium / large
+- **Filter by date**: today / week / month
+- **Clear filters**: reset the list + results count
+
+**Screenshot**
 
 ![History Search and Filters](images/search.jpg)
 
-- **Search by name**: Find games by game name
-- **Filter by player count**: small / medium / large
-- **Filter by date**: today / week / month
-- **Clear filters**: resets the list and results count
+**What you should see**
 
-### Exporting CSV / JSON (New)
+- The list and results count update immediately to match the filters
 
-You can export Game History results for analysis.
+### Exporting CSV / JSON
+
+<a id="exporting-csv--json-new"></a>
+
+**What it is**
+
+- Download a snapshot of the **currently visible** Game History rows (after search/filters).
+
+**Where to find it**
+
+- **Home** → **History** → use the export actions on the page
+
+**How to use**
+
+- Apply any search/filters you want included
+- Use export actions to download:
+  - **CSV** and/or **JSON**
+  - **Copy CSV** (if available)
+
+**Screenshot**
 
 ![History Export Actions](images/export_files.jpg)
 
-**Available exports**
+**What you should see**
 
-- Download **CSV**
-- Download **JSON**
-- Copy CSV (if available)
-
-**Export behavior**
-
-- Exports respect the same filters/search currently applied on screen
+- The export matches what’s on screen (row count + visible columns)
 
 ### Viewing Game Details
 
@@ -1301,7 +1410,7 @@ Custom hotkeys are saved automatically:
 
 ### Important Notes for Custom Hotkeys
 
-- **Combination hotkeys supported (New)**: Hotkeys can use combinations (example: `Shift + 1`), depending on your configured mappings.
+- **Combination hotkeys**: some workflows support key combinations (example: `Shift + 1`), depending on your configured mappings.
 - **Case Insensitive**: Letter keys work in uppercase or lowercase (a = A)
 - **Special Keys Supported**: Space, Enter, and other special keys are supported
 - **No Duplication**: Assign each key to only one action
@@ -1332,21 +1441,32 @@ The Audit Logs page displays:
 - **Filters Section**: (Expandable) Filter options for actions, entity types, and admins
 - **Audit Logs Table**: All logged actions displayed in a table format
 
-### Exporting CSV / JSON (New)
+### Exporting CSV / JSON
 
-Audit Logs can be exported for reporting and review.
+<a id="exporting-csv--json-new-1"></a>
+
+**What it is**
+
+- Download a snapshot of **Audit Logs** rows (often after applying filters).
+
+**Where to find it**
+
+- **Home** → **Audit Logs** → use the export actions on the page
+
+**How to use**
+
+- Apply any filters you want included in the export
+- Use export actions to download:
+  - **CSV** and/or **JSON**
+  - **Copy CSV** (if available)
+
+**Screenshot**
 
 ![Audit Export Actions](images/export_files.jpg)
 
-**Available exports**
+**What you should see**
 
-- Download **CSV**
-- Download **JSON**
-- Copy CSV (if available)
-
-**Export behavior**
-
-- Exports respect the same filters currently applied on screen
+- The export matches the currently filtered/visible rows on screen
 
 ### Understanding Audit Log Entries
 
@@ -1497,11 +1617,25 @@ Keyboard hotkeys allow you to quickly perform common actions without using the m
 | **Space** | Close play window                  | When question is active   |
 | **Enter** | Send selected answers              | When answers are selected |
 
-### Combination Hotkeys (New)
+### Combination hotkeys
 
-Some workflows support combination hotkeys (example: `Shift + 1`). Refer to the in-app hotkey cheatsheet/settings for the current mappings.
+<a id="combination-hotkeys-new"></a>
+
+**What it is**
+
+- Some hotkeys use **modifier combinations** (example: `Shift + 1`) instead of a single keypress.
+
+**Where to find mappings**
+
+- Open the in-app **hotkey cheatsheet** (if available) and/or your **Custom Hotkeys** settings
+
+**Screenshot**
 
 ![Hotkey Cheatsheet](images/hotkey_combination.jpg)
+
+**What you should see**
+
+- The cheatsheet/settings should reflect your current mapping, including combination hotkeys when enabled
 
 ---
 
