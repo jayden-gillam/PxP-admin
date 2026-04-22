@@ -1477,8 +1477,6 @@ Each audit log entry contains:
 
 ### Filtering Audit Logs
 
-![Audit Logs Filters](images/audit-show-filter.png)
-
 #### Step 1: Show Filters
 
 1. Click the **"Show Filters"** button in the header
@@ -1506,8 +1504,6 @@ You can filter by:
 2. The table will show all audit logs again
 
 ### Viewing Change Details
-
-![Audit Log Changes](images/audit-log-changes.png)
 
 1. Find the audit log entry you want to inspect
 2. In the "Changes" column, click **"View Changes"**
