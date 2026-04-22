@@ -1187,7 +1187,7 @@ The Game History page allows you to view all your past games, see game statistic
 
 ### Game History Page Layout
 
-![Game History Page](images/history-main.png)
+![Game History (search, filters, and export)](images/search.jpg)
 
 The Game History page displays:
 
@@ -1218,10 +1218,6 @@ The Game History page displays:
 - **Filter by player count**: small / medium / large
 - **Filter by date**: today / week / month
 - **Clear filters**: reset the list + results count
-
-**Screenshot**
-
-![History Search and Filters](images/search.jpg)
 
 **What you should see**
 
