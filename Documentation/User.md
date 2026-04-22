@@ -627,7 +627,7 @@ Once created, custom questions work just like template questions:
 
 **Screenshot**
 
-![Player Chat Moderation](images/player-chat-moderation.png)
+![Player Chat Moderation](images/player-chat-moderation.jpg)
 
 **What you should see**
 
