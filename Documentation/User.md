@@ -837,7 +837,7 @@ The Template Builder allows you to create and manage question sets (templates) t
 
 ### Template Builder Page Layout
 
-![Template Builder Page](images/template-builder.png)
+![Template Builder Page](images/template_builder.jpg)
 
 The Template Builder page displays:
 
