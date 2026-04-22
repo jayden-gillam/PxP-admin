@@ -65,7 +65,7 @@ Before using Play by Play Admin, ensure you have:
 
 ### Step 2: After Successful Login
 
-![Successful Login](images/new-home.png)
+![Successful Login](images/home_page.jpg)
 
 - You will be automatically redirected to the **Home Page**
 - Your email will appear in the top-right corner of the screen
@@ -230,14 +230,14 @@ The Home Page consists of three main sections:
 
 ### Step 1: Open Create Game Modal
 
-![Create Game Button](images/create-game.png)
+![Create Game Button](images/create-game.jpg)
 
 1. On the Home Page, click the **"+ Create Game"** button
 2. A modal dialog will appear
 
 ### Step 2: Fill in Game Details
 
-![Create Game Modal](images/create-game-filled.png)
+![Create Game Modal](images/create-game.jpg)
 
 The Create Game modal has the following fields:
 
@@ -342,7 +342,7 @@ Scheduled games allow you to prepare games in advance and start them at a specif
 
 ### Viewing Scheduled Games
 
-![Scheduled Games Section](images/new-home.png)
+![Scheduled Games Section](images/home_page.jpg)
 
 1. On the Home Page, scroll to the **"Scheduled Games"** section
 2. All your scheduled games are displayed as cards
