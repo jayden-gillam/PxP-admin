@@ -3,157 +3,196 @@
 ## Table of Contents
 
 1. [Overview](#overview)
-2. [Option 1: GitHub + Netlify Integration (Recommended)](#option-1-github--netlify-integration-recommended)
-3. [Option 2: Manual Build & Upload to Netlify](#option-2-manual-build--upload-to-netlify)
-4. [Environment Variables](#environment-variables)
-5. [Monitoring & Logs](#monitoring--logs)
-6. [Troubleshooting](#troubleshooting)
+2. [Firebase project (who owns what)](#firebase-project-who-owns-what)
+3. [Option 1: GitHub + Netlify Integration (Recommended)](#option-1-github--netlify-integration-recommended)
+4. [Option 2: Manual Build & Upload to Netlify](#option-2-manual-build--upload-to-netlify)
+5. [Option 3: Firebase Hosting](#option-3-firebase-hosting)
+6. [Environment Variables](#environment-variables)
+7. [Monitoring & Logs](#monitoring--logs)
+8. [Troubleshooting](#troubleshooting)
 
 ---
 
 ## Overview
 
-**Play by Play Admin** is deployed on **Netlify**, a platform for hosting modern web applications. This guide covers:
+**Play by Play Admin** is a **Vite + React** SPA backed by **Firebase Authentication + Cloud Firestore**. The static build output (`dist/`) can be hosted on **Netlify**, **Firebase Hosting**, or any static host—as long as the **Firebase web app config** is supplied at **build time** via `VITE_*` variables (they are compiled into the client bundle).
 
-- **Automated Deployment**: Via GitHub integration (recommended)
-- **Manual Deployment**: Build locally and drag-drop to Netlify
+This guide is written for the **application repository** (the codebase you deploy), e.g. [play-by-play-admin](https://github.com/shristikhadka/play-by-play-admin). This `PxP-admin` repository primarily contains documentation and design artifacts; keep deployment steps aligned with whichever repo actually contains `package.json` and `vite.config.*`.
+
+---
+
+## Firebase project (who owns what)
+
+- **Each environment should use its own Firebase project** (or clearly separated Firebase “sites”/projects for dev vs prod). A client or partner typically **creates their own Firebase project**, enables **Authentication** and **Firestore**, deploys **security rules** (and indexes) from the app repo or their fork, and puts the **Web app config** values into hosting **environment variables** (or a local `.env` before `npm run build`).
+- **Hosting provider ≠ Firebase backend**: Netlify (or Firebase Hosting) only serves the static JS/CSS; **Auth, Firestore, and rules** still live in **their** Firebase project.
+- The application repo includes **`firebase.json`** configured for **Hosting** (`public`: `dist`) and SPA rewrites, plus Firestore rules/indexes for local/emulator workflows—so **Firebase Hosting + `firebase deploy`** is a supported path, not only Netlify.
 
 ---
 
 ## Option 1: GitHub + Netlify Integration (Recommended)
 
-### Step 1: Push Code to GitHub
+### Step 1: Push code to GitHub
+
+From your **application** repository root:
 
 ```bash
-    cd /Users/sinclair/Documents/GitHub/play-by-play-admin
-    git init
-    git add .
-    git commit -m "Initial commit"
-    git remote add origin https://github.com/YOUR_USERNAME/play-by-play-admin.git
-    git branch -M main
-    git push -u origin main
+git status
+git add .
+git commit -m "Describe the change"
+git push
 ```
+
+Notes:
+
+- Use whatever your team’s default branch is (`main`, `dev`, etc.). Netlify can deploy from a specific branch—configure that in Netlify rather than assuming `main`.
 
 ### Step 2: Connect to Netlify
 
 1. Go to [netlify.com](https://netlify.com)
-2. Click **"Sign Up"** → Choose **"GitHub"**
-3. Authorize Netlify to access your GitHub account
+2. Sign in (commonly via **GitHub**)
+3. Authorize Netlify if prompted
 
-### Step 3: Import Project
+### Step 3: Import project
 
-1. Click **"Add New Site"** → **"Import an existing project"**
-2. Select **GitHub** as your Git provider
-3. Search for and select `play-by-play-admin` repository
-4. Click **"Continue"**
+1. Click **Add new site** → **Import an existing project**
+2. Select **GitHub** (or your provider)
+3. Pick the admin app repository
 
-### Step 4: Configure Build Settings
+### Step 4: Configure build settings
 
-Netlify should auto-detect these. If not, set manually:
+Netlify may auto-detect Vite. If not, set:
 
 | Setting               | Value           |
 | --------------------- | --------------- |
-| **Build Command**     | `npm run build` |
-| **Publish Directory** | `dist`          |
-| **Node Version**      | 18 (or higher)  |
+| **Build command**     | `npm run build` |
+| **Publish directory** | `dist`          |
+| **Node version**      | **20** (recommended) or **18+** (match your CI/local) |
 
-### Step 5: Set Environment Variables
+### Step 5: Set environment variables
 
-1. In Netlify, go to **Site Settings** → **Build & Deploy** → **Environment**
-2. Click **"Edit Variables"**
-3. Add each Firebase variable:
+1. Netlify → **Site configuration** → **Environment variables** (wording varies slightly by Netlify UI version)
+2. Add the Firebase variables your build expects (commonly `VITE_*`):
 
+```text
+VITE_FIREBASE_API_KEY=...
+VITE_FIREBASE_AUTH_DOMAIN=...
+VITE_FIREBASE_PROJECT_ID=...
+VITE_FIREBASE_STORAGE_BUCKET=...
+VITE_FIREBASE_MESSAGING_SENDER_ID=...
+VITE_FIREBASE_APP_ID=...
+VITE_FIREBASE_MEASUREMENT_ID=...   # optional, if used
 ```
-VITE_FIREBASE_API_KEY = your_api_key
-VITE_FIREBASE_AUTH_DOMAIN = your_auth_domain
-VITE_FIREBASE_PROJECT_ID = your_project_id
-VITE_FIREBASE_STORAGE_BUCKET = your_storage_bucket
-VITE_FIREBASE_MESSAGING_SENDER_ID = your_sender_id
-VITE_FIREBASE_APP_ID = your_app_id
-```
+
+3. If AI features are enabled for your deployment, add **Gemini** variables (see [Environment variables](#environment-variables)).
 
 ### Step 6: Deploy
 
-1. Click **"Deploy Site"**
-2. Wait for build to complete (2-3 minutes)
-3. Your site is now live at `https://your-site-name.netlify.app`
+1. Click **Deploy site** (first time) or rely on automatic deploys after connecting Git
+2. Wait for the build to finish
+3. Open the generated `*.netlify.app` URL (or your custom domain)
 
-### Step 7: Continuous Deployment
+### Step 7: Continuous deployment
 
-Every push to GitHub automatically deploys:
-
-```bash
-# Make changes
-git add .
-git commit -m "Update feature"
-git push origin main
-
-# Netlify automatically builds and deploys within 1-2 minutes
-```
+After Git integration, pushes to the configured branch typically trigger a new deploy automatically.
 
 ---
 
-## Option 2: Manual Build & Upload to Netlify
+## Option 2: Manual build & upload to Netlify
 
-### Step 1: Build Locally
+Manual drag-and-drop deploys upload a **prebuilt** `dist/` folder. Environment variables are **not** magically applied to an already-built bundle unless you rebuild with those values present at build time.
 
-```bash
-  npm install
-  npm run build
-```
+### Step 1: Build locally (with env vars available)
 
-This creates a `dist/` folder with all production files.
-
-### Step 2: Sign In to Netlify
-
-1. Go to [netlify.com](https://netlify.com)
-2. Click **"Sign In"** or **"Sign Up"**
-3. Choose **GitHub** or **Email**
-
-### Step 3: Drag & Drop Deploy
-
-1. Go to Netlify dashboard
-2. Click **"Add New Site"** → **"Deploy manually"**
-3. Drag the entire `dist/` folder to the drop zone
-4. Wait for upload to complete
-
-### Step 4: Environment Variables
-
-After upload:
-
-1. if the .env file was in the directory, when the build was made, Netlify will have those variables baked in.
-   If not, go to **Site Settings** → **Build & Deploy** → **Environment**
-2. Click **"Edit Variables"**
-3. Add all Firebase variables (same as Option 1, Step 5)
-4. Click **"Redeploy Site"**
-
-### Step 5: Future Deployments
+From the **application** repository root:
 
 ```bash
-    # After code changes
+npm install
 npm run build
-
-# Go to Netlify dashboard
-# Click "Add New Site" → "Deploy manually"
-# Drag new dist/ folder
-# Or use "Redeploy" button to quickly redeploy
 ```
+
+Ensure your local `.env` (not committed) contains the required `VITE_*` values before running `npm run build`.
+
+### Step 2: Deploy `dist/` to Netlify
+
+1. Netlify → **Add new site** → **Deploy manually**
+2. Drag the `dist/` folder into the deploy drop zone
+
+### Step 3: Future updates
+
+Repeat:
+
+```bash
+npm run build
+```
+
+…and upload the new `dist/`.
+
+---
+
+## Option 3: Firebase Hosting
+
+Use this when you want the static app on **Firebase Hosting** (same ecosystem as Firestore/Auth). The app repo’s `firebase.json` expects the built files in **`dist/`**.
+
+### Prerequisites
+
+- [Firebase CLI](https://firebase.google.com/docs/cli) (`npm install -g firebase-tools` or use `npx firebase-tools`)
+- Access to the target Firebase project (owner/editor)
+
+### Steps
+
+1. **Create / select the Firebase project** in the Firebase Console and register a **Web app** if you have not already.
+2. In the **application** repo, run `firebase login` and `firebase use <projectId>` (or `firebase init` if you are wiring the repo to a new project).
+3. **Set environment variables** for the build (same `VITE_*` values as below)—locally via `.env`, or via your CI (GitHub Actions, etc.) before `npm run build`.
+4. Build and deploy:
+
+```bash
+npm install
+npm run build
+firebase deploy --only hosting
+```
+
+5. In Firebase Console → **Authentication** → **Settings** → **Authorized domains**, add your Hosting domain (for example `your-project.web.app`, `your-project.firebaseapp.com`, and any custom domain).
+
+**Security note (AI)**: If you set `VITE_GEMINI_API_KEY` for production, treat it as a **client-exposed** secret: restrict the key in [Google AI Studio](https://aistudio.google.com/) (e.g. HTTP referrer restrictions for your deployed origin), since it will be present in the built bundle.
 
 ---
 
 ## Environment Variables
 
-### Finding Your Firebase Credentials
+### Finding Firebase credentials
 
 1. Go to [Firebase Console](https://console.firebase.google.com)
-2. Select your project → **Settings** (gear icon)
-3. Go to **General** tab → scroll down to **Your Apps**
-4. Copy the Firebase config object
-5. Extract individual values for each `VITE_*` variable
+2. Select your project → **Project settings**
+3. Under **Your apps**, select the web app and copy config values into `VITE_*` variables
 
-### Setting Variables Locally (Development)
+### Firebase (required for a real backend)
 
-Create `.env` file in project root:
+These are read in the app as `import.meta.env.VITE_FIREBASE_*` (see `src/contexts/config/firebaseConfig.ts` in the application repo).
+
+| Variable | Purpose |
+| -------- | ------- |
+| `VITE_FIREBASE_API_KEY` | Web API key |
+| `VITE_FIREBASE_AUTH_DOMAIN` | Auth domain |
+| `VITE_FIREBASE_PROJECT_ID` | Project ID |
+| `VITE_FIREBASE_STORAGE_BUCKET` | Storage bucket (if used) |
+| `VITE_FIREBASE_MESSAGING_SENDER_ID` | Sender ID |
+| `VITE_FIREBASE_APP_ID` | App ID |
+| `VITE_FIREBASE_MEASUREMENT_ID` | Optional (Analytics) |
+
+### AI — Google Gemini (optional)
+
+If unset, the app uses a **no-op AI client** (assistant / moderation features that depend on AI stay disabled or show a configuration message).
+
+| Variable | Required? | Purpose |
+| -------- | --------- | ------- |
+| `VITE_GEMINI_API_KEY` | Optional | Enables the real Gemini client when non-empty |
+| `VITE_GEMINI_MODEL` | Optional | Model id; if empty, the app defaults to **`gemini-2.0-flash`** |
+
+Source of truth in the app repo: **`.env.example`** and `src/services/ai/createAiTextClient.ts`.
+
+### Local development
+
+Create `.env` or `.env.local` in the **application** repo root (do not commit it). Copy from `.env.example` and add **all** Firebase keys the app needs:
 
 ```env
 VITE_FIREBASE_API_KEY=your_key_here
@@ -162,180 +201,112 @@ VITE_FIREBASE_PROJECT_ID=your_project_id_here
 VITE_FIREBASE_STORAGE_BUCKET=your_bucket_here
 VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id_here
 VITE_FIREBASE_APP_ID=your_app_id_here
+VITE_FIREBASE_MEASUREMENT_ID=your_measurement_id_here
+VITE_GEMINI_API_KEY=
+VITE_GEMINI_MODEL=gemini-2.0-flash
 ```
 
-**Important**: Never commit `.env` to Git. Add to `.gitignore`:
+**Important**:
 
-```
-.env
-.env.local
-.env.*.local
-```
+- `VITE_*` variables are bundled into client-side code at build time.
+- Never commit `.env` to Git.
 
 ---
 
-## Starting & Stopping
+## Starting & stopping (local)
 
-### Start Development Server
-
-```bash
-  npm install
-  npm run dev
-```
-
-Access at `http://localhost:5173`
-
-### Stop Development Server
+### Start development server
 
 ```bash
-  Press Ctrl+C
+npm install
+npm run dev
 ```
 
-### Deploy to Production
+Vite defaults to `http://localhost:5173` unless configured otherwise.
 
-```bash
-  git push origin main
-# Netlify automatically deploys
-```
+### Stop development server
 
-or for manual:
+Press **Ctrl+C** in the terminal.
 
-```bash
-  npm run build
-# Drag dist/ folder to Netlify dashboard
-```
+### Production deploy (Git-connected Netlify)
 
-### Pause Deployments (temporary)
+Push to the branch Netlify is configured to deploy from.
 
-1. Netlify dashboard → **Site Settings** → **Build & Deploy**
-2. Find **"Deploy Contexts"**
-3. Disable automatic deployment if needed
+### Production deploy (Firebase Hosting)
 
-### Delete Site
-
-1. Netlify dashboard → **Site Settings** → **General**
-2. Scroll to bottom → **Delete site**
-3. Confirm with site name
+After CI or local `npm run build`, run `firebase deploy --only hosting` from the application repo (with Firebase CLI authenticated to the correct project).
 
 ---
 
-## Monitoring & Logs
+## Monitoring & logs
 
-### View Deployment Status
+### Deployment status + build logs
 
-1. Go to Netlify dashboard
-2. Select your site
-3. Go to **Deployments** tab
-4. See all deployments with status (✓ Success, ✗ Failed)
+**Netlify:** Netlify dashboard → your site → **Deploys** → open a deploy → **Deploy log**.
 
-### View Build Logs
+**Firebase Hosting:** Firebase Console → **Hosting** → release history; or CLI output from `firebase deploy`.
 
-1. In **Deployments** tab, click on a deployment
-2. Click **"Deploy Log"** to see build output
-3. Look for errors if build failed
+### Runtime errors
 
-### View Runtime Errors
+1. Open the live site
+2. Open browser devtools → **Console**
 
-1. Open your live site in browser
-2. Press **F12** (or Cmd+Option+I on Mac) to open DevTools
-3. Go to **Console** tab
-4. Look for errors like:
-   - `Firebase: Error (auth/invalid-api-key)`
-   - `Cannot read property 'map' of undefined`
-   - `Uncaught ReferenceError`
+Common signals:
 
-### Check Firebase Logs
+- Missing Firebase config at build time (mis-set `VITE_*` vars)
+- Auth domain not allowlisted for your **Netlify** or **Firebase Hosting** hostname
 
-1. Go to [Firebase Console](https://console.firebase.google.com)
-2. Select your project
-3. Go to **Authentication** tab to see login errors
-4. Go to **Firestore Database** to check write/read issues
+### Firebase-side checks
+
+1. Firebase Console → **Authentication** (domain allowlisting / sign-in method issues)
+2. Firebase Console → **Firestore** (rules/quota issues)
 
 ---
 
 ## Troubleshooting
 
-### Blank Page / App Won't Load
+### Blank page / app won’t load
 
-**Symptoms:** Page loads but shows nothing
+1. Check browser console errors
+2. Verify **build-time** environment variables for **the same build** that produced the deployed `dist/` (Netlify site env, CI secrets, or local `.env` used when you ran `npm run build`)
+3. Trigger a clean rebuild/redeploy after changing env vars
 
-**Solution:**
+### Firebase authentication fails (`auth/invalid-api-key`, etc.)
 
-1. Open browser DevTools (F12)
-2. Check Console tab for errors
-3. Check if environment variables are set in Netlify
-4. If missing: Go to Site Settings → Environment → verify all Firebase variables
-5. Trigger rebuild: Go to **Deployments** → **Trigger Deploy** → **Deploy Site**
+1. Verify values in Firebase project settings
+2. Add your deployed hostname(s) to Firebase Auth **Authorized domains** — for example `your-site.netlify.app`, `your-project.web.app`, `your-project.firebaseapp.com`, and any custom domain
 
-### Firebase Authentication Fails
+### Site feels slow
 
-**Error:** `Firebase: Error (auth/invalid-api-key)`
-
-**Solution:**
-
-1. Go to Firebase Console → Project Settings
-2. Verify API key is correct
-3. Go to Firebase → Authentication → Settings
-4. Add your Netlify domain to "Authorized domains":
-   - `your-site-name.netlify.app`
-5. Copy correct API key to Netlify environment variables
-6. Trigger rebuild
-
-### Site is Very Slow
-
-**Solution:**
-
-1. Check bundle size: `npm run build` and look at output
-2. remove unused dependencies
-3. Check network in browser DevTools (F12 → Network tab)
-4. Optimize Firebase queries if data loading is slow
+1. Check **Network** waterfall for large assets / slow endpoints
+2. Review Firestore query patterns (over-fetching, missing pagination, etc.)
 
 ---
 
-## Quick Reference Commands
+## Quick reference commands
 
 ```bash
-# Development
-npm install              # Install dependencies
-npm run dev             # Start dev server
-npm run build           # Create production build
-npm run lint            # Check code quality
+# Local development
+npm install
+npm run dev
 
-# Git/GitHub
-git status              # Check changes
-git add .               # Stage all files
-git commit -m "msg"     # Commit changes
-git push origin main    # Push to GitHub (triggers Netlify deploy)
-git log --oneline       # View commit history
+# Production build
+npm run build
+
+# Quality
+npm run lint
+npm test
 ```
 
 ---
 
-## Useful Links
+## Useful links
 
-- **Netlify Dashboard**: https://app.netlify.com
+- **Netlify**: https://app.netlify.com
 - **Firebase Console**: https://console.firebase.google.com
-- **GitHub Account**: https://github.com/YOUR_USERNAME
-- **Live Site**: https://your-site-name.netlify.app
+- **Vite**: https://vitejs.dev
 
 ---
 
-## Support
-
-| Issue           | Where to Check                              |
-| --------------- | ------------------------------------------- |
-| Build errors    | Netlify Deployments → Deploy Log            |
-| Runtime errors  | Browser DevTools Console (F12)              |
-| Firebase errors | Firebase Console → Authentication/Firestore |
-| Git/Push errors | GitHub repository or git status             |
-
-For more help:
-
-- Netlify Docs: https://docs.netlify.com
-- Firebase Docs: https://firebase.google.com/docs
-- Vite Docs: https://vitejs.dev
-
----
-
-**Last Updated**: October 2025  
-**Version**: 2.0
+**Last updated**: April 2026  
+**Version**: 3.1

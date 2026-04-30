@@ -54,12 +54,12 @@ Learn how to:
 
 ## 📋 Document Overview
 
-| Document                              | Page Length | Read Time | Audience                  |
-| ------------------------------------- | ----------- | --------- | ------------------------- |
-| [User Manual](./User.md)              | ~500 lines  | 30-45 min | End users, administrators |
-| [Development Guide](./Development.md) | ~300 lines  | 20-30 min | Developers, engineers     |
-| [Deployment Guide](./Deployment.md)   | ~350 lines  | 25-35 min | DevOps, system admins     |
+| Document                              | Length / depth                         | Audience                  |
+| ------------------------------------- | -------------------------------------- | ------------------------- |
+| [User Manual](./User.md)              | Long-form operator guide (many topics) | End users, administrators |
+| [Development Guide](./Development.md) | Long-form engineering guide           | Developers, engineers     |
+| [Deployment Guide](./Deployment.md)   | Netlify-focused deployment runbook     | DevOps, system admins     |
 
 ---
 
-**Documentation Hub Last Updated**: October 2025
+**Documentation hub last updated**: April 2026

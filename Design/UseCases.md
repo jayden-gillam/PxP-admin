@@ -1,6 +1,6 @@
 ## Actors
 - **Game Master (GM)**  
-  Responsible for creating and managing games. They will choose/create prediction questions, open/close prediction windows, select play presets, mark correct answers, and monitor the video stream feed.
+  Responsible for creating and managing games. They will choose/create prediction questions, open/close prediction windows, select play presets, mark correct answers, monitor the video stream feed, and perform operational workflows during a live session (including optional messaging/moderation tasks when enabled).
 
 - **Ad Master (AM)**  
   Manages the shown advertisements. They will upload ad assets, preview the ads, and schedule the ads.
@@ -9,7 +9,7 @@
   Target demographic is 19–35. Players interact by predicting plays. Players can earn points, compete on the leaderboard, and receive rewards.
 
 - **System (PxP Platform / Firebase backend)**  
-  Provides real-time updates.
+  Provides real-time updates, persistence, authentication, and authorization for admin workflows.
 
 ---
 
@@ -147,3 +147,153 @@ GMs can run Legend Mode. This is a pre-recorded game. These games are scored sim
 3. Players interact as if it were a live game.  
 
 **Requirement Link:** FR8  
+
+---
+
+### UC9: Save and Resume Game Setup (Drafts)
+The Game Master must be able to save partial game setup work and return later without losing configuration progress.
+
+**Actors:**  
+- Game Master  
+- System  
+
+**Flow:**  
+1. GM starts creating a game (details, template selection, stream configuration, etc.).  
+2. GM saves a draft (explicitly or via autosave behavior, depending on product implementation).  
+3. System persists draft state.  
+4. GM later resumes the draft and continues setup.  
+
+**Requirement Link:** FR20  
+
+---
+
+### UC10: Reorder Questions Within a Game Session
+The Game Master must be able to change the ordering of upcoming questions/plays to match the real broadcast when the planned order shifts.
+
+**Actors:**  
+- Game Master  
+- System  
+
+**Flow:**  
+1. GM opens the game’s question/play list.  
+2. GM reorders items (drag/drop or equivalent).  
+3. System persists the new ordering for the session.  
+
+**Requirement Link:** FR21  
+
+---
+
+### UC11: Configure Hotkey Combinations for Frequent Controls
+The Game Master must be able to bind frequent actions to keyboard shortcuts (including multi-key combinations where supported) to operate faster during live games.
+
+**Actors:**  
+- Game Master  
+- System  
+
+**Flow:**  
+1. GM opens hotkey settings.  
+2. GM assigns actions to shortcut combinations.  
+3. System stores preferences and applies them in the live controls UI.  
+
+**Requirement Link:** FR22  
+
+---
+
+### UC12: Export Operational Data (CSV/JSON)
+Administrators must be able to export datasets from key operational screens for analysis, reporting, and record keeping.
+
+**Actors:**  
+- Game Master  
+- System  
+
+**Flow:**  
+1. GM navigates to an export-capable screen (e.g., game history, audit logs, leaderboards—depending on product scope).  
+2. GM applies filters/search as needed.  
+3. GM exports results as CSV and/or JSON.  
+4. System generates a downloadable file consistent with the current UI filters.  
+
+**Requirement Link:** FR23  
+
+---
+
+### UC13: Search, Filter, and Review Past Games (Game History)
+The Game Master must be able to locate prior games quickly and review relevant session metadata.
+
+**Actors:**  
+- Game Master  
+- System  
+
+**Flow:**  
+1. GM opens Game History.  
+2. GM searches/filters by relevant fields (e.g., name/status/date—exact fields depend on implementation).  
+3. System returns matching games for review/navigation.  
+
+**Requirement Link:** FR24  
+
+---
+
+### UC14: Moderate Player Chat (When Enabled)
+When player chat is enabled for a session, operators must be able to review messages, apply moderation actions, and reduce risk of abusive content during live play.
+
+**Actors:**  
+- Game Master  
+- System  
+- Player  
+
+**Flow:**  
+1. Player sends chat messages during a game session (if enabled).  
+2. GM opens moderation tools for the session.  
+3. GM reviews messages and flags/profanity/AI-assisted signals (depending on configuration).  
+4. GM takes moderation actions consistent with policy (e.g., hide/remove/ban workflows as implemented).  
+5. System applies updates and reflects changes to clients as designed.  
+
+**Requirement Link:** FR25  
+
+---
+
+### UC15: Preview the Player Experience (AppView Emulation)
+The Game Master must be able to preview how key player UI states render without requiring a separate physical device workflow for every check.
+
+**Actors:**  
+- Game Master  
+- System  
+
+**Flow:**  
+1. GM opens AppView preview/emulation in the admin dashboard.  
+2. GM selects a representative player UI context/state.  
+3. System renders a faithful preview for operational validation.  
+
+**Requirement Link:** FR26  
+
+---
+
+### UC16: Use an In-App AI Assistant (Optional)
+The Game Master may use an optional AI assistant to answer operational questions and accelerate common workflows when an AI provider is configured.
+
+**Actors:**  
+- Game Master  
+- System  
+
+**Flow:**  
+1. GM opens the AI assistant panel.  
+2. GM asks a question or selects a suggested workflow prompt.  
+3. System returns guidance via the configured provider.  
+4. If AI is disabled/unconfigured, the product should not block core admin functionality.  
+
+**Requirement Link:** FR27  
+
+---
+
+### UC17: Track Administrative Changes (Audit Logs)
+The system should support reviewing administrative actions for accountability and incident follow-up.
+
+**Actors:**  
+- Game Master  
+- System  
+
+**Flow:**  
+1. GM opens audit logs.  
+2. GM filters to a relevant time range/entity/action type (as implemented).  
+3. System displays a chronological record of administrative changes.  
+
+**Requirement Link:** FR28  

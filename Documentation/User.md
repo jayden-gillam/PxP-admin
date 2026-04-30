@@ -1772,12 +1772,13 @@ A: Open the Set Dashboard for the set you want to rename, click the "Rename" but
 
 ## Document Information
 
-**Last Updated**: December 2025  
-**Version**: 3.0  
+**Last Updated**: April 2026  
+**Version**: 3.1  
 **For**: Play by Play Admin Users
 
 ### Version History
 
+- **Version 3.1** (April 2026): Documentation refresh for newer operational workflows (drafts, question reordering, hotkey combinations, exports, game history search/filter, messaging + player chat moderation when enabled, AppView preview, optional AI assistant).
 - **Version 3.0** (December 2025): Added Template Builder, Game History, and Audit Logs features
 - **Version 2.0** (Previous): Achievement Badge System and Custom Questions
 - **Version 1.0** (Initial): Core game management features

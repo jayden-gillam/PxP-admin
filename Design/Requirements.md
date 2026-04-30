@@ -71,7 +71,7 @@
   This includes improving spacing, typography, button styling, and layout consistency across pages such as the Game Master dashboard, Create Game screen, and leaderboard view.
   - Priority: MEDIUM
     
- - **FR16: Sync Status Indicator**  
+- **FR16: Sync Status Indicator**  
   The system must display how many players are behind in the stream (e.g., “8% ~2.3 seconds”).  
   It should also suggest when a resync may be needed, but resync remains fully manual.  
     - Priority: MEDIUM
@@ -89,6 +89,51 @@
   The system must allow Game Masters to choose a template set when creating a new game.  
   Once selected, the system automatically loads all questions from that template set.  
     - Priority: MEDIUM
+
+- **FR20: Game Setup Drafts**  
+  The system must allow Game Masters to save and resume partial game setup (drafts) without losing in-progress configuration.  
+  - Use Case: UC9  
+  - Priority: HIGH  
+
+- **FR21: Question Reordering**  
+  The system must allow Game Masters to reorder upcoming questions/plays during a session to match the real broadcast flow.  
+  - Use Case: UC10  
+  - Priority: HIGH  
+
+- **FR22: Hotkey Combination Configuration**  
+  The system must allow Game Masters to configure keyboard shortcuts (including multi-key combinations where supported) for frequent live controls.  
+  - Use Case: UC11  
+  - Priority: HIGH  
+
+- **FR23: Data Exports (CSV/JSON)**  
+  The system must support exporting operational datasets from relevant admin screens, respecting the operator’s current filters/search scope.  
+  - Use Case: UC12  
+  - Priority: MEDIUM  
+
+- **FR24: Game History Search & Filtering**  
+  The system must provide search/filter capabilities for reviewing prior games and locating sessions quickly.  
+  - Use Case: UC13  
+  - Priority: MEDIUM  
+
+- **FR25: Player Chat Moderation**  
+  When player chat is enabled, the system must provide moderation workflows for operators to review and act on chat content according to implemented policy/controls.  
+  - Use Case: UC14  
+  - Priority: HIGH  
+
+- **FR26: AppView / Player UI Preview**  
+  The system must provide an in-admin preview of player-facing UI states to validate layout and messaging during operations.  
+  - Use Case: UC15  
+  - Priority: MEDIUM  
+
+- **FR27: Optional AI Assistant**  
+  The system may provide an optional in-app AI assistant for operator guidance when configured; core gameplay/admin operation must remain usable when AI is disabled or unavailable.  
+  - Use Case: UC16  
+  - Priority: LOW  
+
+- **FR28: Audit Logs**  
+  The system must record and expose administrative changes in an auditable log view for operational accountability.  
+  - Use Case: UC17  
+  - Priority: MEDIUM  
 
 
 
@@ -112,4 +157,16 @@
 - **NR4: Reliability**
   The system must remain available during live games without unexpected crashes or downtime.  
   - Priority: HIGH  
+
+- **NR5: Auditability**
+  Administrative actions that affect live operations should be traceable for accountability and incident review (see FR28).  
+  - Priority: MEDIUM  
+
+- **NR6: Safety for live moderation**
+  Chat moderation features should be designed to reduce operational risk during live events (clear states, confirm destructive actions where appropriate, and avoid blocking core game operation when chat features are disabled).  
+  - Priority: MEDIUM  
+
+- **NR7: Data portability**
+  Operators should be able to export key operational datasets for offline analysis (see FR23).  
+  - Priority: MEDIUM  
  

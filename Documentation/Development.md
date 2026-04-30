@@ -871,13 +871,23 @@ VITE_FIREBASE_APP_ID=your_app_id
 VITE_FIREBASE_MEASUREMENT_ID=your_measurement_id
 ```
 
-### AI Assistant configuration
+### AI Assistant configuration (Google Gemini)
 
-If the AI assistant feature is enabled in your build, you may also need to add an AI provider key in `.env`.
+The application uses a **single factory**: if `VITE_GEMINI_API_KEY` is set (non-empty), the real Gemini client is used; otherwise a **no-op** client runs and AI-dependent UI shows a configuration message.
+
+In the **application** repo (e.g. [play-by-play-admin](https://github.com/shristikhadka/play-by-play-admin)), add to `.env` / `.env.local`:
+
+```env
+# Optional — leave unset for no-op / offline behavior
+VITE_GEMINI_API_KEY=your_key_here
+# Optional — defaults to gemini-2.0-flash in code if unset/empty
+VITE_GEMINI_MODEL=gemini-2.0-flash
+```
 
 Notes:
-- The exact variable name(s) are documented in the application repo’s `.env.example`.
-- The app should still run without AI enabled, depending on how the environment is configured.
+
+- See the app repo’s **`.env.example`** and `src/services/ai/createAiTextClient.ts` / `src/vite-env.d.ts`.
+- Keys are **bundled into the client** (`VITE_*`). For any production deployment, **restrict the API key** (e.g. HTTP referrer / allowed origins in Google AI Studio), as recommended in the app’s `.env.example` comments.
 
 **Important Notes:**
 
@@ -1638,8 +1648,8 @@ If you encounter issues not covered here:
 
 ## Document Information
 
-**Last Updated**: December 2025  
-**Version**: 2.0  
+**Last Updated**: April 2026  
+**Version**: 3.0  
 **Maintainers**: [PxP Team]
 
 ---
