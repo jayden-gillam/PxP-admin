@@ -34,8 +34,8 @@ flowchart TB
             Ads[(Ads)]
             Users[(Users)]
             Rewards[(Rewards)]
-            Messages[(Messages / Chat (as implemented))]
-            AuditLogs[(Audit Logs (as implemented))]
+            Messages[(Chat messages)]
+            AuditLogs[(Audit logs)]
         end
     end
 
