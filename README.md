@@ -2,7 +2,7 @@
 
 ## **Summary**
 
-This repository contains the **documentation and design artifacts** for the Play-by-Play admin dashboard (the actual application code lives in a separate repository).
+This repository contains the **documentation and design artifacts** for the Play-by-Play Admin Dashboard (the actual application code lives in a separate repository).
 
 If you are looking for **operator-facing documentation** (screenshots, workflows), start at `Documentation/User.md` (see also `Documentation/README.md`).
 
@@ -36,7 +36,6 @@ https://github.com/users/jayden-gillam/projects/4
 - [Team meeting minutes](MeetingMinutes/Team)
 - [Mentor meeting minutes](MeetingMinutes/Mentor)
 - [Client partner meeting minutes](MeetingMinutes/ClientPartner)
-- ... any other documents/links you see need
 
 ## **Code Repositories**
 
