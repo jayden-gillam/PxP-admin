@@ -34,6 +34,7 @@
 - **Firebase Integration**: Authentication and real-time database
 - **Type-Safe Development**: Full TypeScript support
 - **Observer Pattern Architecture**: Decoupled event-driven system for game events
+- **Probability Manager**: Create probability models for template sets
 
 ---
 
